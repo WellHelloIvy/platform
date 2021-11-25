@@ -35,4 +35,25 @@ app.use(
 
 app.use(routes);
 
+class CustomError extends Error {
+
+  title: string;
+  errors: Array<string>;
+  status: number;
+  
+  constructor(error: string) {
+    super(error);
+
+    Object.setPrototypeOf(this, CustomError.prototype)
+  }
+}
+
+app.use((_req, _res, next) => {
+  const err = new CustomError("The requested resource couldn't be found.");
+  err.title = "Resource Not Found";
+  err.errors = ["The requested resource couldn't be found."];
+  err.status = 404;
+  next(err);
+});
+
 export default app;
