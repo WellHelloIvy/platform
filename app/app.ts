@@ -1,10 +1,12 @@
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const csurf = require('csurf');
-const helmet = require('helmet');
-const cookieParser = require('cookie-parser');
-const { environment } = require('./config');
+import express from 'express'
+import morgan from 'morgan'
+import cors from 'cors'
+import csurf from 'csurf'
+import helmet from 'helmet'
+import cookieParser from 'cookie-parser'
+import {environment} from './config'
+import routes from './routes'
+
 const isProduction = environment === 'production';
 
 const app = express();
@@ -30,3 +32,7 @@ app.use(
     },
   })
 );
+
+app.use(routes);
+
+export default app;
