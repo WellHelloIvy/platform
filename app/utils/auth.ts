@@ -12,13 +12,13 @@ interface JwtConfig {
 const { secret, expiresIn }: JwtConfig = jwtConfig;
 
 const setTokenCookie = (res:any, user:DefaultUser) => {
-  const token = jwt.sign(
+  const token:string = jwt.sign(
     { data: user.toSafeObject() },
     secret,
     { expiresIn: parseInt(expiresIn) },
   );
 
-  const isProduction = process.env.NODE_ENV === "production";
+  const isProduction:boolean = process.env.NODE_ENV === "production";
 
   res.cookie('token', token, {
     maxAge: parseInt(expiresIn) * 1000,
@@ -28,4 +28,31 @@ const setTokenCookie = (res:any, user:DefaultUser) => {
   });
 
   return token;
+};
+
+interface Cookie {
+  token:string;
+
+}
+
+const restoreUser = (req:any, res:any, next:any) => {
+  const { token } = req.cookies;
+
+  return jwt.verify(token, secret, async (err:any, jwtPayload:any): Promise<any> => {
+    if (err) {
+      return next();
+    }
+
+    try {
+      const { id } = jwtPayload.data;
+      req.user = await User.scope('currentUser').findByPk(id);
+    } catch (e) {
+      res.clearCookie('token');
+      return next();
+    }
+
+    if (!req.user) res.clearCookie('token');
+
+    return next();
+  });
 };
