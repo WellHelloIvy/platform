@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { User } from '../db/models';
+import  db from '../db/models';
 import { DefaultUser } from '../db/models/user';
 import { CustomError } from '../app';
 
@@ -46,7 +46,7 @@ const restoreUser = (req:any, res:any, next:any) => {
 
     try {
       const { id } = jwtPayload.data;
-      req.user = await User.scope('currentUser').findByPk(id);
+      req.user = await db.User.scope('currentUser').findByPk(id);
     } catch (e) {
       res.clearCookie('token');
       return next();
@@ -71,4 +71,4 @@ const requireAuth = [
   },
 ];
 
-export default { setTokenCookie, restoreUser, requireAuth };
+export { setTokenCookie, restoreUser, requireAuth };

@@ -63,7 +63,7 @@ app.use((_req, _res, next) => {
   next(err);
 });
 
-app.use((err:err, _req:any, _res:any, next:any) {
+app.use((err:err, _req:any, _res:any, next:any) => {
   if (err instanceof ValidationError) {
     const error = new CustomError("The resource could not be validated")
     error.errors = err.errors.map((e) => e.message);

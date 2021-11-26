@@ -28,7 +28,7 @@ export interface DefaultUser {
   firstName: string;
   lastName: string;
   toSafeObject(): object;
-  validatePassword(): object;
+  validatePassword(): boolean;
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> { }
