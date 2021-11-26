@@ -28,6 +28,7 @@ app.use(
   csurf({
     cookie: {
       secure: isProduction,
+      //@ts-ignore
       sameSite: isProduction && "Lax",
       httpOnly: true,
     },
@@ -44,10 +45,14 @@ class CustomError extends Error {
 
   constructor(error: string) {
     super(error);
-
+    this.title = '';
+    this.errors= [];
+    this.status= 0
     Object.setPrototypeOf(this, CustomError.prototype)
   }
 }
+
+type err = CustomError | ValidationError
 
 app.use((_req, _res, next) => {
   const err = new CustomError("The requested resource couldn't be found.");
@@ -57,16 +62,17 @@ app.use((_req, _res, next) => {
   next(err);
 });
 
-app.use((err, _req, _res, next) => {
-  const error = new CustomError("The resource could not be validated")
+app.use((err:err, _req: any, _res: any, next:any) => {
   if (err instanceof ValidationError) {
+    const error = new CustomError("The resource could not be validated")
     error.errors = err.errors.map((e) => e.message);
     error.title = 'Validation error';
+    err = error;
   }
   next(err);
 });
 
-app.use((err, _req, res, _next) => {
+app.use((err:CustomError, _req:any, res:any, _next:any) => {
   res.status(err.status || 500);
   console.error(err);
   res.json({

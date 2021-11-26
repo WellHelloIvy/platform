@@ -1,5 +1,8 @@
 import express from 'express'
+import expressAsyncHandler from 'express-async-handler';
 import apiRouter from './api'
+import db from '../db/models'
+
 
 const router = express.Router();
 
@@ -11,6 +14,10 @@ router.get('/hello/world', function(req, res) {
   res.send('Hello World!');
 });
 
+router.get('/users', expressAsyncHandler(async(req, res) => {
+  const user = await db.User.findAll()
+  return;
+}))
 
 
 export default router;
