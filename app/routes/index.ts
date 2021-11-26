@@ -1,7 +1,7 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler';
 import apiRouter from './api'
-import User from '../db/models/user'
+import db from '../db/models'
 
 
 const router = express.Router();
@@ -15,9 +15,8 @@ router.get('/hello/world', function(req, res) {
 });
 
 router.get('/users', expressAsyncHandler(async(req, res) => {
-  const user:Array<User> = await User.findAll()
-  console.log('-------------->',User)
-  return user;
+  const user = await db.User.findAll()
+  return;
 }))
 
 
