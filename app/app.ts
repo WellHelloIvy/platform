@@ -37,7 +37,7 @@ app.use(
 
 app.use(routes);
 
-class CustomError extends Error {
+export class CustomError extends Error {
 
   title: string;
   errors: Array<string>;

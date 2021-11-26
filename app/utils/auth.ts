@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../db/models';
 import { DefaultUser } from '../db/models/user';
+import { CustomError } from '../app';
 
 const { jwtConfig } = require('../config');
 
@@ -56,3 +57,18 @@ const restoreUser = (req:any, res:any, next:any) => {
     return next();
   });
 };
+
+const requireAuth = [
+  restoreUser,
+  function (req:any, res:any, next:any) {
+    if (req.user) return next();
+
+    const err = new CustomError('Unauthorized');
+    err.title = 'Unauthorized';
+    err.errors = ['Unauthorized'];
+    err.status = 401;
+    return next(err);
+  },
+];
+
+export default { setTokenCookie, restoreUser, requireAuth };
