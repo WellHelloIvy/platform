@@ -1,5 +1,6 @@
 'use strict';
-import { Model, Optional, Validator } from 'sequelize';
+import { Model, Optional } from 'sequelize';
+import bcrypt from 'bcryptjs';
 
 interface UserAttributes {
   id: number;
@@ -8,6 +9,11 @@ interface UserAttributes {
   email: string;
   hashedPassword: string;
   cashBalance: number;
+}
+
+interface LoginArguments {
+  email: 'string',
+  password: 'string'
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> { }
@@ -23,7 +29,35 @@ module.exports = (sequelize: any, DataTypes: any) => {
     static associate(models: any) {
       // define association here
     }
+
+    toSafeObject = () => {
+      const { id, email } = this;
+      return { id, email };
+    }
+
+    validatePassword = (password: string) => {
+      return bcrypt.compareSync(password, this.hashedPassword)
+    }
+
+    static async getCurrentUserById(id:number) {
+      return await User.scope('currentUser').findByPk(id);
+     };
+
+
+
+    static async login({ email, password }: LoginArguments) {
+      const { Op } = require('sequelize');
+      const user = await User.scope('loginUser').findOne({
+        where: {
+            email,
+          },
+        });
+      if (user && user.validatePassword(password)) {
+        return await User.scope('currentUser').findByPk(user.id);
+      }
+    }
   };
+  
   User.init({
     id: {
       allowNull: false,
