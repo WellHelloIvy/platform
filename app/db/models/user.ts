@@ -12,8 +12,15 @@ interface UserAttributes {
 }
 
 interface LoginArguments {
-  email: 'string',
-  password: 'string'
+  email: 'string';
+  password: 'string';
+}
+
+interface SignUpArguments {
+  firstName: 'string';
+  lastName: 'string';
+  email: 'string';
+  password: 'string';
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> { }
@@ -43,8 +50,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       return await User.scope('currentUser').findByPk(id);
      };
 
-
-
     static async login({ email, password }: LoginArguments) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
@@ -56,8 +61,23 @@ module.exports = (sequelize: any, DataTypes: any) => {
         return await User.scope('currentUser').findByPk(user.id);
       }
     }
+
+    static async signup({ firstName, lastName, email, password }: SignUpArguments) {
+      const hashedPassword = bcrypt.hashSync(password);
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        hashedPassword,
+        cashBalance: 0.00
+      });
+      return await User.scope('currentUser').findByPk(user.id);
+    }
+
   };
-  
+
+
+
   User.init({
     id: {
       allowNull: false,
