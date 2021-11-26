@@ -37,7 +37,7 @@ app.use(
 
 app.use(routes);
 
-class CustomError extends Error {
+export class CustomError extends Error {
 
   title: string;
   errors: Array<string>;
@@ -52,7 +52,8 @@ class CustomError extends Error {
   }
 }
 
-type err = CustomError | ValidationError
+type err = CustomError | ValidationError;
+
 
 app.use((_req, _res, next) => {
   const err = new CustomError("The requested resource couldn't be found.");
@@ -62,7 +63,7 @@ app.use((_req, _res, next) => {
   next(err);
 });
 
-app.use((err:err, _req: any, _res: any, next:any) => {
+app.use((err:err, _req:any, _res:any, next:any) => {
   if (err instanceof ValidationError) {
     const error = new CustomError("The resource could not be validated")
     error.errors = err.errors.map((e) => e.message);

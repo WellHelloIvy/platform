@@ -1,9 +1,8 @@
 import express from 'express';
+import asyncHandler from 'express-async-handler';
+import { setTokenCookie } from '../../utils/auth';
+import db from '../../db/models';
 
 const router  = express.Router()
-
-router.post('/test', function(req, res) {
-  res.json({ requestBody: req.body });
-});
 
 export default router;
