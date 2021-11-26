@@ -23,6 +23,14 @@ interface SignUpArguments {
   password: 'string';
 }
 
+export interface DefaultUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+  toSafeObject(): object;
+  validatePassword(): object;
+}
+
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> { }
 
 module.exports = (sequelize: any, DataTypes: any) => {
