@@ -18,6 +18,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING(50),
+        unique:true,
         allowNull: false
       },
       hashedPassword: {
