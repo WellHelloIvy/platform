@@ -1,5 +1,5 @@
 'use strict';
-import { Model, Optional } from 'sequelize';
+import { Model, Optional, Validator } from 'sequelize';
 
 interface UserAttributes {
   id: number;
@@ -44,8 +44,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
       unique: true,
       allowNull: false,
       validate: {
-
-      }
+        isEmail: true
+      },
     },
     hashedPassword: {
       type: DataTypes.STRING,
@@ -58,7 +58,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
   }, {
     defaultScope: {
       attributes: {
-        exclude: ['email', 'hashedPassword', 'createdAt', 'updatedAt']
+        exclude: ['email', 'hashedPassword', 'cashBalance', 'createdAt', 'updatedAt']
       }
     },
     scopes: {
