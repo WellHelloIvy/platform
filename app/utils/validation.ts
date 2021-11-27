@@ -1,5 +1,6 @@
 import { validationResult } from 'express-validator';
 import { CustomError } from '../app';
+import { check } from 'express-validator';
 
 const handleValidationErrors = (req:any, _res:any, next:any) => {
   const validationErrors = validationResult(req);
@@ -18,6 +19,25 @@ const handleValidationErrors = (req:any, _res:any, next:any) => {
   next();
 };
 
-export default {
+export const validateLogin = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a valid email.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a password.'),
   handleValidationErrors,
-};
+];
+
+export const validateSignup = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .isEmail()
+    .withMessage('Please provide a valid email.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 6 })
+    .withMessage('Password must be 6 characters or more.'),
+  handleValidationErrors,
+];
