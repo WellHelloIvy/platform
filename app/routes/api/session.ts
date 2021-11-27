@@ -3,8 +3,22 @@ import expressAsyncHandler from 'express-async-handler';
 import { setTokenCookie } from '../../utils/auth';
 import db from '../../db/models'
 import { CustomError } from '../../app';
+import { restoreUser } from '../../utils/auth';
 
 const router:any = express.Router();
+
+router.get(
+  '/',
+  restoreUser,
+  (req:any, res:any) => {
+    const { user } = req;
+    if (user) {
+      return res.json({
+        user: user.toSafeObject()
+      });
+    } else return res.json({});
+  }
+);
 
 router.post(
   '/',
