@@ -1,6 +1,6 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler';
-import { setTokenCookie, restoreUser } from '../../utils/auth';
+import { setTokenCookie } from '../../utils/auth';
 import db from '../../db/models'
 import { CustomError } from '../../app';
 
