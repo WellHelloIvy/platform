@@ -1,8 +1,10 @@
 import express from 'express';
-import asyncHandler from 'express-async-handler';
-import { setTokenCookie } from '../../utils/auth';
-import db from '../../db/models';
+import sessionRouter from './session';
+import usersRouter from './users'
 
-const router  = express.Router()
+const router = express.Router();
+
+router.use('/session', sessionRouter);
+router.use('/users', usersRouter);
 
 export default router;
