@@ -4,6 +4,7 @@ import { setTokenCookie } from '../../utils/auth';
 import db from '../../db/models'
 import { CustomError } from '../../app';
 import { restoreUser } from '../../utils/auth';
+import { validateLogin } from '../../utils/validation';
 
 const router:any = express.Router();
 
@@ -22,6 +23,7 @@ router.get(
 
 router.post(
   '/',
+  validateLogin,
   expressAsyncHandler(async (req:any, res:any, next:any): Promise<any> => {
     const { email, password } = req.body;
 
