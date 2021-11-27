@@ -12,15 +12,15 @@ interface UserAttributes {
 }
 
 interface LoginArguments {
-  email: 'string';
-  password: 'string';
+  email: string;
+  password: string;
 }
 
 interface SignUpArguments {
-  firstName: 'string';
-  lastName: 'string';
-  email: 'string';
-  password: 'string';
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
 }
 
 export interface DefaultUser {
@@ -54,17 +54,16 @@ module.exports = (sequelize: any, DataTypes: any) => {
       return bcrypt.compareSync(password, this.hashedPassword)
     }
 
-    static async getCurrentUserById(id:number) {
+    static async getCurrentUserById(id: number) {
       return await User.scope('currentUser').findByPk(id);
-     };
+    };
 
     static async login({ email, password }: LoginArguments) {
-      const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
         where: {
-            email,
-          },
-        });
+          email,
+        },
+      });
       if (user && user.validatePassword(password)) {
         return await User.scope('currentUser').findByPk(user.id);
       }

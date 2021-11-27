@@ -9,9 +9,9 @@ const router:any = express.Router();
 router.post(
   '/',
   expressAsyncHandler(async (req:any, res:any, next:any): Promise<any> => {
-    const { credential, password } = req.body;
+    const { email, password } = req.body;
 
-    const user = await db.User.login({ credential, password });
+    const user = await db.User.login({ email, password });
 
     if (!user) {
       const err = new CustomError('Login failed');
@@ -27,6 +27,14 @@ router.post(
       user,
     });
   }),
+);
+
+router.delete(
+  '/',
+  (_req:any, res:any) => {
+    res.clearCookie('token');
+    return res.json({ message: 'success' });
+  }
 );
 
 export default router;
