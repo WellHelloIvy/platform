@@ -1,3 +1,4 @@
+
 export interface CurrentUser {
   id: number;
   firstName: string;
@@ -7,7 +8,6 @@ export interface CurrentUser {
 }
 
 export interface LoginUser {
-  id: number;
   email: string;
   password: string;
 }
@@ -16,3 +16,13 @@ export interface Action {
   type: string;
   payload?:any;
 }
+
+interface Session {
+  user: CurrentUser
+}
+
+export interface State {
+  session: Session;
+}
+
+
