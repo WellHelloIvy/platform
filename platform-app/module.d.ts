@@ -32,4 +32,8 @@ export interface State {
   session: Session;
 }
 
+export interface StateErrors {
+  
+}
+
 
