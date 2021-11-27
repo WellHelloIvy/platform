@@ -7,6 +7,13 @@ export interface CurrentUser {
   cashBalance: number;
 }
 
+export interface SignupUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
 export interface LoginUser {
   email: string;
   password: string;
@@ -23,6 +30,10 @@ interface Session {
 
 export interface State {
   session: Session;
+}
+
+export interface StateErrors {
+  
 }
 
 
