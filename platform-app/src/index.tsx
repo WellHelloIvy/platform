@@ -6,11 +6,24 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
+import { restoreCSRF, csrfFetch } from './store/csrf';
 
 const store = configureStore();
 
+declare global {
+  interface Window {
+    csrfFetch: any;
+    store: any;
+  }
+}
+
 if (process.env.NODE_ENV !== 'production') {
-  //@ts-ignore
+  restoreCSRF();
+  window.csrfFetch = csrfFetch;
+  window.store = store;
+}
+
+if (process.env.NODE_ENV !== 'production') {
   window.store = store;
 }
 
