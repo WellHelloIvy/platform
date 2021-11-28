@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
+import { ModalProvider } from 'context/Modal';
 
 declare global {
   interface Window {
@@ -31,9 +32,11 @@ reportWebVitals();
 function Root() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <App /> 
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ModalProvider>
     </Provider>
   );
 }
