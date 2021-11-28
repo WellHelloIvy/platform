@@ -1,31 +1,25 @@
 'use strict';
 import { Model, Optional } from 'sequelize';
 
-interface TransactionAttributes {
+interface AssetAttributes {
   id: number;
   userId: number;
   cryptoId: string;
-  price: number;
   quantity: number;
-  buy: boolean;
 }
 
-interface TransactionCreationAttributes extends Optional<TransactionAttributes, "id">{}
+interface AssetCreationAttributes extends Optional<AssetAttributes, "id">{}
 
 module.exports = (sequelize:any, DataTypes:any) => {
-  class Transaction extends Model<TransactionAttributes, TransactionCreationAttributes> implements TransactionAttributes {
+  class Asset extends Model<AssetAttributes, AssetCreationAttributes> implements AssetAttributes{
     id!:number;
     userId!:number;
     cryptoId!:string;
-    price!:number;
     quantity!:number;
-    buy!:boolean;
     static associate(models:any) {
     }
-
-
   };
-  Transaction.init({
+  Asset.init({
     id: {
       allowNull: false,
       type: DataTypes.INTEGER,
@@ -40,21 +34,13 @@ module.exports = (sequelize:any, DataTypes:any) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    price: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
     quantity: {
       type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    buy: {
-      type:DataTypes.BOOLEAN,
       allowNull: false
     }
   }, {
     sequelize,
-    modelName: 'Transaction',
+    modelName: 'Asset',
   });
-  return Transaction;
+  return Asset;
 };
