@@ -1,23 +1,15 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { State } from "../../../module";
+import { useDispatch} from "react-redux";
 import * as sessionActions from "../../store/session";
 
 function SignupForm() {
   const dispatch:any = useDispatch();
-  const navigate = useNavigate();
-  const sessionUser = useSelector((state:State) => state.session.user);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [errors, setErrors] = useState<Array<string>>([]);
-
-  if (sessionUser) (
-    navigate('/')
-  )
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
