@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { State } from "../../../module";
 import * as sessionActions from "../../store/session";
 
-function SignupFormPage() {
+function SignupForm() {
   const dispatch:any = useDispatch();
   const navigate = useNavigate();
   const sessionUser = useSelector((state:State) => state.session.user);
@@ -87,4 +87,4 @@ function SignupFormPage() {
   );
 }
 
-export default SignupFormPage;
+export default SignupForm;
