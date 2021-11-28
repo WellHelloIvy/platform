@@ -47,3 +47,21 @@ export const validateSignup = [
     .withMessage('Password must be 6 characters or more.'),
   handleValidationErrors,
 ];
+
+export const validateTransaction = [
+  check('cryptoId')
+    .exists({ checkFalsy: true })
+    .withMessage('There was an error with your transaction.'),
+  check('price')
+    .exists({ checkFalsy: true })
+    .isNumeric()
+    .withMessage('There was an error with your transaction.'),
+    check('quantity')
+    .exists({ checkFalsy: true })
+    .isNumeric()
+    .withMessage('There was an error with your transaction.'),
+    check('buy')
+    .exists({ checkFalsy: true })
+    .isBoolean()
+    .withMessage('There was an error with your transaction.')
+]

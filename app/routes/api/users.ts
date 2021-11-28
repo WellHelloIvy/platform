@@ -21,6 +21,7 @@ router.post(
   }),
 );
 
+//get transactions for user
 router.get(
   '/',
   expressAsyncHandler(async(req, res): Promise<any> => {
