@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import Logout from 'components/Logout';
 import { State } from '../../../module';
 import LoginFormModal from 'components/LoginFormModal';
+import SignupFormModal from 'components/SignupFormModal';
+
 
 function Navigation(){
   const sessionUser = useSelector((state: State) => state.session.user);
@@ -10,20 +12,23 @@ function Navigation(){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <Logout />
+      <>
+        <NavLink to="/">Home</NavLink>
+        <Logout />
+      </>
+
     );
   } else {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <SignupFormModal />
       </>
     );
   }
 
   return (
     <>
-        <NavLink to="/">Home</NavLink>
         {sessionLinks}
     </>
   );
