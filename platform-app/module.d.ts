@@ -33,7 +33,16 @@ export interface State {
 }
 
 export interface StateErrors {
-  
+
+}
+
+export interface ModalProviderProp {
+  children?:any
+}
+
+export interface ModalProps {
+  onClose: React.ReactEventHandler<{}>;
+  children?: any
 }
 
 
