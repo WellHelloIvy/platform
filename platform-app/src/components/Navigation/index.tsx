@@ -4,6 +4,7 @@ import Logout from 'components/Logout';
 import { State } from '../../../module';
 import LoginFormModal from 'components/LoginFormModal';
 
+
 function Navigation(){
   const sessionUser = useSelector((state: State) => state.session.user);
 
