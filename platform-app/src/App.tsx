@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Routes} from "react-router-dom";
-import SignupFormPage from "components/SignupFormPage";
+import { Routes, Route} from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "components/Navigation";
 
@@ -16,7 +15,7 @@ function App() {
     <>
       <Navigation />
       <Routes>
-        <Route path="/signup" element={<SignupFormPage />} />
+        <Route path='/' element={<h1>hello</h1>} />
       </Routes>
     </>
 
