@@ -1,5 +1,5 @@
 'use strict';
-import { Model, Optional } from 'sequelize';
+import { Model, Optional, Transaction } from 'sequelize';
 import bcrypt from 'bcryptjs';
 
 interface UserAttributes {
@@ -42,7 +42,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     hashedPassword!: string;
     cashBalance!: number;
     static associate(models: any) {
-      // define association here
+      User.hasMany(models.Transaction, {foreignKey: 'userId'})
     }
 
     toSafeObject = () => {
