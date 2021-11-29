@@ -20,11 +20,9 @@ module.exports = (sequelize:any, DataTypes:any) => {
     price!:number;
     quantity!:number;
     buy!:boolean;
-    static associate(models:any) {
-    }
-
-
+    static associate(models:any) {}
   };
+
   Transaction.init({
     id: {
       allowNull: false,
@@ -37,11 +35,11 @@ module.exports = (sequelize:any, DataTypes:any) => {
       allowNull: false,
     },
     cryptoId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(10),
       allowNull: false
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10,2),
       allowNull: false
     },
     quantity: {

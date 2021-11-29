@@ -44,6 +44,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     static associate(models: any) {
       User.hasMany(models.Transaction, {foreignKey: 'userId'})
       User.hasMany(models.Asset, {foreignKey: 'userId'})
+      User.hasMany(models.Watchlist, {foreignKey: 'userId'})
     }
 
     toSafeObject = () => {
