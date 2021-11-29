@@ -18,4 +18,23 @@ router.post(
      })
   })
 )
+
+router.put(
+  '/:assetId',
+  validateAsset,
+  expressAsyncHandler(async(req, res): Promise<any> => {
+    const assetId = req.params.assetId
+    const asset = await db.Asset.findByPk(assetId)
+    const { userId, cryptoId, quantity } = req.body;
+    asset.userId = userId;
+    asset.cryptoId = cryptoId;
+    asset.quantity = quantity;
+    await asset.save();
+
+    return res.json({
+      asset
+     })
+  })
+)
+
 export default router;
