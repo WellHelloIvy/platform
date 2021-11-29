@@ -17,6 +17,26 @@ export const getAssets = (sessionUserId:number) => async(dispatch: Dispatch):Pro
     }
 }
 
+export const addAsset = (userId, cryptoId, quantity) => async(dispatch: Dispatch): Promise<any> => {
+  const response = await fetch(`/api/assets`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      userId,
+      cryptoId,
+      quantity
+    })
+  });
+
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(loadAssets(data))
+    return null
+  }
+}
+
 const initialState = {}
 
 const assetsReducer = (state = initialState, action: Action) => {
