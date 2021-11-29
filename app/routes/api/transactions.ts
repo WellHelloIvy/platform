@@ -1,6 +1,5 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler';
-import { userInfo } from 'os';
 import db from '../../db/models'
 import { validateTransaction } from '../../utils/validation';
 
@@ -17,6 +16,7 @@ router.post(
     return res.json({
       transaction
      })
-
   })
 )
+
+export default router;
