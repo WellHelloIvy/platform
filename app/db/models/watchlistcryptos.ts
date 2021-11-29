@@ -10,7 +10,7 @@ interface WatchlistCryptoAttributes {
 interface WatchlistCryptoCreationAttributes extends Optional<WatchlistCryptoAttributes, "id">{}
 
 module.exports = (sequelize:any, DataTypes:any) => {
-  class WatchlistCryptos extends Model<WatchlistCryptoAttributes, WatchlistCryptoCreationAttributes> implements WatchlistCryptoAttributes {
+  class WatchlistCrypto extends Model<WatchlistCryptoAttributes, WatchlistCryptoCreationAttributes> implements WatchlistCryptoAttributes {
     id!: number;
     watchlistId!: number;
     cryptoId!:string;
@@ -18,7 +18,7 @@ module.exports = (sequelize:any, DataTypes:any) => {
     static associate(models:any) { }
   };
 
-  WatchlistCryptos.init({
+  WatchlistCrypto.init({
         id: {
       allowNull: false,
       type: DataTypes.INTEGER,
@@ -35,7 +35,7 @@ module.exports = (sequelize:any, DataTypes:any) => {
     }
   }, {
     sequelize,
-    modelName: 'WatchlistCryptos',
+    modelName: 'WatchlistCrypto',
   });
-  return WatchlistCryptos;
+  return WatchlistCrypto;
 };
