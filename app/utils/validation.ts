@@ -51,17 +51,33 @@ export const validateSignup = [
 export const validateTransaction = [
   check('cryptoId')
     .exists({ checkFalsy: true })
-    .withMessage('There was an error with your transaction.'),
+    .withMessage('1:There was an error with your transaction.'),
+  check('userId')
+    .exists({ checkFalsy: true })
+    .withMessage('2:There was an error with your transaction.'),
   check('price')
     .exists({ checkFalsy: true })
     .isNumeric()
-    .withMessage('There was an error with your transaction.'),
-    check('quantity')
+    .withMessage('3:There was an error with your transaction.'),
+  check('quantity')
     .exists({ checkFalsy: true })
     .isNumeric()
-    .withMessage('There was an error with your transaction.'),
-    check('buy')
+    .withMessage('4:There was an error with your transaction.'),
+  check('buy')
     .exists({ checkFalsy: true })
     .isBoolean()
-    .withMessage('There was an error with your transaction.')
+    .withMessage('5:There was an error with your transaction.')
+]
+
+export const validateAsset = [
+  check('cryptoId')
+    .exists({ checkFalsy: true })
+    .withMessage('6:There was an error with your transaction.'),
+  check('userId')
+    .exists({ checkFalsy: true })
+    .withMessage('7:There was an error with your transaction.'),
+  check('quantity')
+    .exists({ checkFalsy: true })
+    .isNumeric()
+    .withMessage('8:There was an error with your transaction.'),
 ]
