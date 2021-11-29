@@ -3,7 +3,6 @@ import expressAsyncHandler from 'express-async-handler';
 import { setTokenCookie } from '../../utils/auth';
 import db from '../../db/models'
 import { validateSignup } from '../../utils/validation';
-import { userInfo } from 'os';
 
 const router:any = express.Router();
 
@@ -41,6 +40,17 @@ router.get(
       where: { userId }
     })
      return res.json(assets)
+  })
+)
+
+router.get(
+  '/:userId/watchlists',
+  expressAsyncHandler(async(req, res): Promise<any> => {
+    const userId = req.params.userId
+    const watchlists = await db.Watchlist.findAll({
+      where: { userId }
+    })
+     return res.json(watchlists)
   })
 )
 
