@@ -33,4 +33,15 @@ router.get(
   })
 )
 
+router.get(
+  '/:userId/assets',
+  expressAsyncHandler(async(req, res): Promise<any> => {
+    const userId = req.params.userId
+    const assets = await db.Asset.findAll({
+      where: { userId }
+    })
+     return res.json(assets)
+  })
+)
+
 export default router;
