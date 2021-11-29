@@ -12,7 +12,11 @@ function Navigation(){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <Logout />
+      <>
+        <NavLink to="/">Home</NavLink>
+        <Logout />
+      </>
+
     );
   } else {
     sessionLinks = (
@@ -25,7 +29,6 @@ function Navigation(){
 
   return (
     <>
-        <NavLink to="/">Home</NavLink>
         {sessionLinks}
     </>
   );

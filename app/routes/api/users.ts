@@ -1,6 +1,6 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler';
-import { setTokenCookie, requireAuth } from '../../utils/auth';
+import { setTokenCookie } from '../../utils/auth';
 import db from '../../db/models'
 import { validateSignup } from '../../utils/validation';
 
@@ -20,5 +20,16 @@ router.post(
     });
   }),
 );
+
+//get transactions for user
+router.get(
+  '/',
+  expressAsyncHandler(async(req, res): Promise<any> => {
+    const users = await db.User.findAll({
+      include: db.Transaction
+     })
+     return res.json(users)
+  })
+)
 
 export default router;

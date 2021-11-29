@@ -8,7 +8,7 @@ module.exports = {
       lastName: 'Doe',
       email: 'john@gmail.com',
       hashedPassword: bcrypt.hashSync('abc123', 10),
-      cashBalance: 0.0,
+      cashBalance: 10.00,
     }], {});
 
   },
