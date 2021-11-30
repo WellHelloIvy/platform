@@ -52,14 +52,20 @@ export interface Asset {
   quantity: number;
 }
 
-export interface LoadAssetData {
-  id: number;
-  userId: number;
-  cryptoId: string;
-  quantity: number;
+export interface Transaction {
+  id:number;
+  userId:number;
+  cryptoId:string;
+  price:number;
+  quantity:number;
+  buy:number;
 }
 
 export interface Action {
   type: string;
   data?: any;
+}
+
+export interface State {
+  session: object;
 }
