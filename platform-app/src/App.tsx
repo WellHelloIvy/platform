@@ -6,6 +6,7 @@ import Navigation from "components/Navigation";
 import { getAssets } from "store/assets";
 import { getTransactions } from "store/transactions";
 import { getWatchlists } from "store/watchlists";
+import { getCryptocurrencies } from "store/cryptocurrencies";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       dispatch(getAssets(user?.id))
       dispatch(getTransactions(user?.id))
       dispatch(getWatchlists(user?.id))
+      dispatch(getCryptocurrencies())
     })
     .then(() => setIsLoaded(true));
 

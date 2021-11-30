@@ -32,10 +32,6 @@ export interface State {
   session: Session;
 }
 
-export interface StateErrors {
-
-}
-
 export interface ModalProviderProp {
   children?:any;
 }
@@ -74,4 +70,15 @@ export interface Action {
 
 export interface State {
   session: object;
+}
+
+export interface Crypto {
+  "id": string;
+  "name": string;
+  "min_size": string;
+  "status": string;
+  "message": string;
+  "max_precision": string;
+  "convertible_to": Array;
+  "details": object;
 }
