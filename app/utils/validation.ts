@@ -64,7 +64,7 @@ export const validateTransaction = [
     .isNumeric()
     .withMessage('4:There was an error with your transaction.'),
   check('buy')
-    .exists({ checkFalsy: true })
+    .exists()
     .isBoolean()
     .withMessage('5:There was an error with your transaction.')
 ]

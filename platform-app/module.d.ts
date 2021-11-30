@@ -37,12 +37,29 @@ export interface StateErrors {
 }
 
 export interface ModalProviderProp {
-  children?:any
+  children?:any;
 }
 
 export interface ModalProps {
   onClose: React.ReactEventHandler<{}>;
-  children?: any
+  children?: any;
 }
 
+export interface Asset {
+  id: number;
+  userId: number;
+  cryptoId: string;
+  quantity: number;
+}
 
+export interface LoadAssetData {
+  id: number;
+  userId: number;
+  cryptoId: string;
+  quantity: number;
+}
+
+export interface Action {
+  type: string;
+  data?: any;
+}
