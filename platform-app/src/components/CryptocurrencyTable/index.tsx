@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { withStyles, WithStyles } from '@mui/styles';
 import { Theme, createTheme } from '@mui/material/styles';
@@ -11,6 +12,7 @@ import {
   TableCellRenderer,
   TableHeaderProps,
 } from 'react-virtualized';
+import { State } from '../../../module';
 
 const styles = (theme: Theme) =>
   ({
@@ -175,70 +177,48 @@ interface Data {
   id: number;
   protein: number;
 }
-type Sample = [string, number, number, number, number];
 
-const sample: readonly Sample[] = [
-  ['Frozen yoghurt', 159, 6.0, 24, 4.0],
-  ['Ice cream sandwich', 237, 9.0, 37, 4.3],
-  ['Eclair', 262, 16.0, 24, 6.0],
-  ['Cupcake', 305, 3.7, 67, 4.3],
-  ['Gingerbread', 356, 16.0, 49, 3.9],
-];
 
-function createData(
-  id: number,
-  dessert: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-): Data {
-  return { id, dessert, calories, fat, carbs, protein };
-}
-
-const rows: Data[] = [];
-
-for (let i = 0; i < 2; i += 1) {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  rows.push(createData(i, ...randomSelection));
-}
+let rows: Array<any> = [];
 
 export default function ReactVirtualizedTable() {
+  const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies))
+  rows = [...currencies]
+  console.log('--------------------->',currencies)
   return (
     <Paper style={{ height: 400, width: '100%' }}>
       <VirtualizedTable
         rowCount={rows.length}
-        rowGetter={({ index }:any) => rows[index]}
+        rowGetter={({ index }) => rows[index]}
         columns={[
           {
             width: 200,
-            label: 'Dessert',
-            dataKey: 'dessert',
+            label: 'Ticker Symbol',
+            dataKey: 'id',
           },
           {
             width: 120,
-            label: 'Calories\u00A0(g)',
-            dataKey: 'calories',
-            numeric: true,
+            label: 'Name',
+            dataKey: 'name',
           },
-          {
-            width: 120,
-            label: 'Fat\u00A0(g)',
-            dataKey: 'fat',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Carbs\u00A0(g)',
-            dataKey: 'carbs',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Protein\u00A0(g)',
-            dataKey: 'protein',
-            numeric: true,
-          },
+          // {
+          //   width: 120,
+          //   label: 'Fat\u00A0(g)',
+          //   dataKey: 'fat',
+          //   numeric: true,
+          // },
+          // {
+          //   width: 120,
+          //   label: 'Carbs\u00A0(g)',
+          //   dataKey: 'carbs',
+          //   numeric: true,
+          // },
+          // {
+          //   width: 120,
+          //   label: 'Protein\u00A0(g)',
+          //   dataKey: 'protein',
+          //   numeric: true,
+          // },
         ]}
       />
     </Paper>
