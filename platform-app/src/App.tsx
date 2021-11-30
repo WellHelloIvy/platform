@@ -7,6 +7,7 @@ import { getAssets } from "store/assets";
 import { getTransactions } from "store/transactions";
 import { getWatchlists } from "store/watchlists";
 import { getCryptocurrencies } from "store/cryptocurrencies";
+import TradePage from "components/TradePage";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path='/' element={<h1>hello</h1>} />
+        <Route path='/trade' element={<TradePage />} />
       </Routes>
     </>
 
