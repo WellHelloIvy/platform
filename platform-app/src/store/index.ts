@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import assetsReducer from './assets';
 import sessionReducer from './session';
 import transactionsReducer from './transactions';
+import watchlistsReducer from './watchlists';
 
 
 const rootReducer:any = combineReducers({
   session: sessionReducer,
   assets: assetsReducer,
-  transactions: transactionsReducer
+  transactions: transactionsReducer,
+  watchlists: watchlistsReducer,
 });
 
 let enhancer:any;

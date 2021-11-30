@@ -50,6 +50,7 @@ router.get(
     const watchlists = await db.Watchlist.findAll({
       where: { userId }
     })
+    console.log('===================', watchlists)
      return res.json(watchlists)
   })
 )

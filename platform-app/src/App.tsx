@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "components/Navigation";
 import { getAssets } from "store/assets";
 import { getTransactions } from "store/transactions";
+import { getWatchlists } from "store/watchlists";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     .then((user:any) => {
       dispatch(getAssets(user?.id))
       dispatch(getTransactions(user?.id))
+      dispatch(getWatchlists(user?.id))
     })
     .then(() => setIsLoaded(true));
 

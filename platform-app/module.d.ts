@@ -61,6 +61,12 @@ export interface Transaction {
   buy:number;
 }
 
+export interface Watchlist {
+  id:number;
+  userId:number;
+  name:string;
+}
+
 export interface Action {
   type: string;
   data?: any;

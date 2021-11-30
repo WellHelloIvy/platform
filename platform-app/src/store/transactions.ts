@@ -12,7 +12,6 @@ export const getTransactions = (sessionUserId:number) => async(dispatch: Dispatc
   const response = await fetch(`/api/users/${sessionUserId}/transactions`)
   if(response.ok) {
     const data = await response.json();
-    console.log('======================', data)
     dispatch(loadTransactions(data));
     return null;
   }
