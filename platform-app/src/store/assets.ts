@@ -1,9 +1,9 @@
 import { Dispatch } from "redux";
-import { Action, Asset, LoadAssetData } from '../../module'
+import { Action, Asset} from '../../module'
 
 const LOAD_ASSETS = 'assets/LOAD_ASSETS'
 
-const loadAssets = (data:Array<LoadAssetData>) => ({
+const loadAssets = (data:Array<Asset>) => ({
   type: LOAD_ASSETS,
   data
 })
@@ -33,7 +33,7 @@ export const addAsset = (userId:number, cryptoId:string, quantity:number) => asy
   if(response.ok) {
     const data = await response.json();
     dispatch(loadAssets(data))
-    return null
+    return null;
   }
 }
 
@@ -63,7 +63,7 @@ const assetsReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case LOAD_ASSETS:
       newState = Object.assign({}, state);
-      action.data.assets.forEach((asset: Asset) => {
+      action.data.forEach((asset: Asset) => {
         newState[asset.id] = asset
       });
       return newState;

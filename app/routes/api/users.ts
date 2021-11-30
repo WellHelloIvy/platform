@@ -48,8 +48,10 @@ router.get(
   expressAsyncHandler(async(req, res): Promise<any> => {
     const userId = req.params.userId
     const watchlists = await db.Watchlist.findAll({
-      where: { userId }
+      where: { userId },
+      include: {model: db.WatchlistCrypto}
     })
+
      return res.json(watchlists)
   })
 )

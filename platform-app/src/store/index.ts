@@ -2,11 +2,15 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import assetsReducer from './assets';
 import sessionReducer from './session';
+import transactionsReducer from './transactions';
+import watchlistsReducer from './watchlists';
 
 
 const rootReducer:any = combineReducers({
   session: sessionReducer,
-  assets: assetsReducer
+  assets: assetsReducer,
+  transactions: transactionsReducer,
+  watchlists: watchlistsReducer,
 });
 
 let enhancer:any;
