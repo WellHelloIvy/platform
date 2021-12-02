@@ -170,12 +170,8 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTabl
 // ---
 
 interface Data {
-  calories: number;
-  carbs: number;
-  dessert: string;
-  fat: number;
-  id: number;
-  protein: number;
+  id: string;
+  name:string;
 }
 
 
@@ -184,15 +180,14 @@ let rows: Array<any> = [];
 export default function ReactVirtualizedTable() {
   const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies))
   rows = [...currencies]
-  console.log('--------------------->',currencies)
   return (
-    <Paper style={{ height: 400, width: '100%' }}>
+    <Paper style={{ height: 400, width: '50%' }}>
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
         columns={[
           {
-            width: 200,
+            width: 120,
             label: 'Ticker Symbol',
             dataKey: 'id',
           },
@@ -201,24 +196,11 @@ export default function ReactVirtualizedTable() {
             label: 'Name',
             dataKey: 'name',
           },
-          // {
-          //   width: 120,
-          //   label: 'Fat\u00A0(g)',
-          //   dataKey: 'fat',
-          //   numeric: true,
-          // },
-          // {
-          //   width: 120,
-          //   label: 'Carbs\u00A0(g)',
-          //   dataKey: 'carbs',
-          //   numeric: true,
-          // },
-          // {
-          //   width: 120,
-          //   label: 'Protein\u00A0(g)',
-          //   dataKey: 'protein',
-          //   numeric: true,
-          // },
+          {
+            width: 120,
+            label: '',
+            dataKey: '',
+          },
         ]}
       />
     </Paper>
