@@ -69,9 +69,20 @@ export interface Action {
   data?: any;
 }
 
+interface Cryptodetails {
+  ticker: any;
+}
+
+export interface Ticker {
+  price?: number;
+}
+
 export interface State {
   session: object;
+  cryptodetails?: Cryptodetails;
 }
+
+
 
 export interface Crypto {
   "id": string;
