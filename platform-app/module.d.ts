@@ -30,6 +30,7 @@ interface Session {
 
 export interface State {
   session: Session;
+  cryptocurrencies: object
 }
 
 export interface ModalProviderProp {
