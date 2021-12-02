@@ -18,9 +18,10 @@ const getCryptoTicker = (cryptoId:string) => (dispatch: Dispatch<object>) => {
     .catch(err => console.error(err));
 }
 
-export const getCryptoDetails = (cryptoId:string) => {
-  getCryptoTicker(cryptoId)
+export const getCryptoDetails = (cryptoId:string) => (dispatch: Dispatch<object>) => {
+  dispatch(getCryptoTicker(cryptoId))
 }
+
 
 const initialState = {}
 
