@@ -13,6 +13,7 @@ import {
   TableHeaderProps,
 } from 'react-virtualized';
 import { State } from '../../../module';
+import { Link } from 'react-router-dom';
 
 const styles = (theme: Theme) =>
   ({
@@ -69,10 +70,14 @@ interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
   rowHeight?: number;
 }
 
+
+
 class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> {
+
   static defaultProps = {
     headerHeight: 48,
     rowHeight: 48,
+    onRowClick: ""
   };
 
   getRowClassName = ({ index }: Row) => {
@@ -85,22 +90,26 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
 
   cellRenderer: TableCellRenderer = ({ cellData, columnIndex }) => {
     const { columns, classes, rowHeight, onRowClick }:any = this.props;
+
     return (
-      <TableCell
-        component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, {
-          [classes.noClick]: onRowClick == null,
-        })}
-        variant="body"
-        style={{ height: rowHeight }}
-        align={
-          (columnIndex != null && columns[columnIndex].numeric) || false
-            ? 'right'
-            : 'left'
-        }
-      >
-        {cellData}
-      </TableCell>
+        <TableCell
+          component="div"
+          className={clsx(classes.tableCell, classes.flexContainer, {
+            [classes.noClick]: onRowClick == null,
+          })}
+          variant="body"
+          style={{ height: rowHeight }}
+          align={
+            (columnIndex != null && columns[columnIndex].numeric) || false
+              ? 'right'
+              : 'left'
+          }
+        >
+          {columnIndex===0 ? <Link to={`/cryptocurrencies/${cellData}`}>
+          {cellData}
+          </Link> : cellData}
+        </TableCell>
+
     );
   };
 
@@ -167,8 +176,6 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
 const defaultTheme = createTheme();
 const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTable);
 
-// ---
-
 interface Data {
   id: string;
   name:string;
@@ -180,6 +187,7 @@ let rows: Array<any> = [];
 export default function ReactVirtualizedTable() {
   const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies))
   rows = [...currencies]
+
   return (
     <Paper style={{ height: 400, width: '50%' }}>
       <VirtualizedTable
