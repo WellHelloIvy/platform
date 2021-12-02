@@ -8,6 +8,7 @@ import { getTransactions } from "store/transactions";
 import { getWatchlists } from "store/watchlists";
 import { getCryptocurrencies } from "store/cryptocurrencies";
 import CryptosPage from "components/CryptosPage";
+import CryptoDetailsPage from "components/CryptoDetailsPage";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Routes>
         <Route path='/' element={<h1>hello</h1>} />
         <Route path='/cryptocurrencies' element={<CryptosPage />} />
+        <Route path='/cryptocurrencies/:cryptoId' element={<CryptoDetailsPage />} />
       </Routes>
     </>
 
