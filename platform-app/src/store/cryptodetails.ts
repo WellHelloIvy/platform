@@ -9,17 +9,17 @@ const loadCryptoDetails = (data: any) => ({
 })
 
 
-const getCryptoTicker = (cryptoId:string) => {
+const getCryptoTicker = (cryptoId:string) => (dispatch: Dispatch<object>) => {
   const options = { method: 'GET', headers: { Accept: 'application/json' } };
 
   fetch(`https://api.exchange.coinbase.com/products/${cryptoId}-USD/ticker`, options)
     .then(response => response.json())
-    .then(response => console.log(response))
+    .then(response => dispatch(loadCryptoDetails(response)))
     .catch(err => console.error(err));
 }
 
-export const getCryptoDetails = (cryptoId:string) => (dispatch: Dispatch<object>) => {
-  dispatch(loadCryptoDetails(getCryptoTicker(cryptoId)))
+export const getCryptoDetails = (cryptoId:string) => {
+  getCryptoTicker(cryptoId)
 }
 
 const initialState = {}
