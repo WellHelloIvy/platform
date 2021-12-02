@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import assetsReducer from './assets';
 import cryptocurrenciesReducer from './cryptocurrencies';
+import cryptoDetailsReducer from './cryptodetails';
 import sessionReducer from './session';
 import transactionsReducer from './transactions';
 import watchlistsReducer from './watchlists';
@@ -12,7 +13,8 @@ const rootReducer:any = combineReducers({
   assets: assetsReducer,
   transactions: transactionsReducer,
   watchlists: watchlistsReducer,
-  cryptocurrencies: cryptocurrenciesReducer
+  cryptocurrencies: cryptocurrenciesReducer,
+  cryptodetails: cryptoDetailsReducer
 });
 
 let enhancer:any;

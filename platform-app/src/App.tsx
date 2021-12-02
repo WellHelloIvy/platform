@@ -33,6 +33,7 @@ function App() {
       <Routes>
         <Route path='/' element={<h1>hello</h1>} />
         <Route path='/cryptocurrencies' element={<CryptosPage />} />
+        <Route path='/cryptocurrencies/:cryptoId' element={<CryptoDetails />} />
       </Routes>
     </>
 
