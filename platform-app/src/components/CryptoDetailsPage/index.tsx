@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCryptoTicker, getCandleSticks } from "store/cryptodetails";
 import { Paper } from "@mui/material";
 import { State, Ticker } from "../../../module";
+import PriceChart from "components/PriceChart";
 
 function CryptoDetailsPage() {
   const params = useParams()
@@ -34,6 +35,7 @@ function CryptoDetailsPage() {
           <h1>{cryptoId}</h1>
           <h2>insert name here</h2>
         </hgroup>
+        <PriceChart />
         <ul>
           <li>{`$${ticker?.price}`}</li>
         </ul>
