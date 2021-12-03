@@ -31,6 +31,7 @@ interface Session {
 export interface State {
   session: Session;
   cryptocurrencies: object
+  watchlists?:Watchlist
 }
 
 export interface ModalProviderProp {
@@ -62,6 +63,7 @@ export interface Watchlist {
   id:number;
   userId:number;
   name:string;
+  WatchlistCryptos: Array<string>
 }
 
 export interface Action {
@@ -81,6 +83,7 @@ export interface Ticker {
 export interface State {
   session: object;
   cryptodetails?: Cryptodetails;
+  watchlists?: Watchlist
 }
 
 export interface Crypto {

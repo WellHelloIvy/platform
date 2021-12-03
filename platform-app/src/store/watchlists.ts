@@ -20,13 +20,10 @@ export const getWatchlists = (sessionUserId:number) => async(dispatch:Dispatch):
 const initialState = {}
 
 const watchlistsReducer = (state = initialState, action: Action) => {
-  let newState;
+  let newState:any;
   switch (action.type) {
     case LOAD_WATCHLISTS:
-      newState = Object.assign({}, state);
-      action.data.forEach((watchlist:Watchlist) => {
-        newState[watchlist.id] = watchlist
-      });
+      newState = action.data
       return newState;
     default:
       return state;

@@ -9,6 +9,8 @@ import { getWatchlists } from "store/watchlists";
 import { getCryptocurrencies } from "store/cryptocurrencies";
 import CryptosPage from "components/CryptosPage";
 import CryptoDetailsPage from "components/CryptoDetailsPage";
+import Dashboard from "components/Dashboard";
+
 
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
     <>
       <Navigation />
       <Routes>
-        <Route path='/' element={<h1>hello</h1>} />
+        <Route path='/' element={<Dashboard />} />
         <Route path='/cryptocurrencies' element={<CryptosPage />} />
         <Route path='/cryptocurrencies/:cryptoId' element={<CryptoDetailsPage />} />
       </Routes>
