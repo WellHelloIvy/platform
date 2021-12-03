@@ -83,8 +83,6 @@ export interface State {
   cryptodetails?: Cryptodetails;
 }
 
-
-
 export interface Crypto {
   "id": string;
   "name": string;

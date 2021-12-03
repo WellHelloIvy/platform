@@ -24,13 +24,17 @@ export const getCryptoTicker = (cryptoId:string) => (dispatch: Dispatch<object>)
     .catch(err => console.error(err));
 }
 
-export const getCandleSticks = (cryptoId:string, startDateTime:string, endDateTime:string) => (dispatch: Dispatch<object>) => {
+export const getCandleSticks = (cryptoId:string, startDateTime:string, endDateTime:string) => async (dispatch: Dispatch<any>):Promise<any> => {
   const options = {method: 'GET', headers: {Accept: 'application/json'}};
 
-  fetch(`https://api.exchange.coinbase.com/products/${cryptoId}-USD/candles?granularity=300&start=${startDateTime}&end=${endDateTime}`, options)
-    .then(response => response.json())
-    .then(response => dispatch(loadCryptoCandlesticks(response)))
-    .catch(err => console.error(err));
+  const response = await fetch(`https://api.exchange.coinbase.com/products/${cryptoId}-USD/candles?granularity=300&start=${startDateTime}&end=${endDateTime}`, options)
+
+  if(response.ok){
+    const data = await response.json()
+    const closingPrice = data[data.length - 1][4]
+    dispatch(loadCryptoCandlesticks(data))
+    return closingPrice;
+  }
 }
 
 export const getCryptoDetails = (cryptoId:string, startDateTime:string, endDateTime:string) => (dispatch: Dispatch<object>) => {
