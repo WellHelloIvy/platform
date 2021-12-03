@@ -183,9 +183,6 @@ interface Data {
   name:string;
 }
 
-
-// let rows: Array<any> = [];
-
 export default function ReactVirtualizedTable() {
   const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies));
   const arrayOfCurrencies = [...currencies]
@@ -195,19 +192,22 @@ export default function ReactVirtualizedTable() {
 
   const [searchValue, setSearchValue] = useState('');
 
-    useEffect(() => {
-      if(!searchValue) return;
-      let searchResults = copyOfRows.filter((row) => row.id.toLowerCase().includes(searchValue.toLowerCase()) || row.name.toLowerCase().includes(searchValue.toLowerCase()))
-      setRows(searchResults)
-    }, [searchValue])
+  useEffect(() => {
+    if(!searchValue) return;
+    let searchResults = copyOfRows.filter((row) => row.id.toLowerCase().includes(searchValue.toLowerCase()) || row.name.toLowerCase().includes(searchValue.toLowerCase()))
+    setRows(searchResults)
+   }, [searchValue])
 
+  const handleCancel = () => {
+   setRows(arrayOfCurrencies)
+  }
 
   return (
     <Paper style={{ height: 400, width: '50%' }}>
       <SearchBar
         value={searchValue}
         onChange={(searchQuery) => setSearchValue(searchQuery)}
-        onCancelSearch={}
+        onCancelSearch={() => handleCancel()}
       />
       <VirtualizedTable
         rowCount={rows.length}
