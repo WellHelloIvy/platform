@@ -28,7 +28,7 @@ function CryptoDetailsPage() {
   const calculatePercentageChange = () => {
     const currentPrice:any = ticker?.price
     const percentageChange = ((currentPrice - yesterdaysClosingPrice)/yesterdaysClosingPrice * 100);
-    return percentageChange
+    return percentageChange.toFixed(2)
   }
 
     return(
