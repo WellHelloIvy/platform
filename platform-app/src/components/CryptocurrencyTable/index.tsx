@@ -185,11 +185,12 @@ interface Data {
 }
 
 export default function ReactVirtualizedTable() {
+  //@ts-ignore
   const dispatch = useDispatch()
   const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies));
-
+//@ts-ignore
   const handleWatchlistClick = (id:string) => {
-    
+
   }
 
   for(let key in currencies) {

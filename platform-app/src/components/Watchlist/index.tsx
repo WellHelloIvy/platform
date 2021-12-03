@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { State } from "../../../module"
 
 function Watchlist() {
-  const currenciesOnWatchlist = useSelector((state:State) => state.watchlists?.[0].WatchlistCryptos);
-
+  const watchlistState:any = useSelector((state:State) => state?.watchlists)
+  const arrayOfWatchlists:any = Object.values(watchlistState)
+  const watchlist = arrayOfWatchlists[0]
+  const currenciesOnWatchlist = watchlist.WatchlistCryptos
 
   return(
       <section>

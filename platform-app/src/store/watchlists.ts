@@ -23,7 +23,10 @@ const watchlistsReducer = (state = initialState, action: Action) => {
   let newState:any;
   switch (action.type) {
     case LOAD_WATCHLISTS:
-      newState = action.data
+      newState = Object.assign({}, state);
+      action.data.forEach((watchlist:any) => {
+        newState[watchlist.id] = watchlist
+      });
       return newState;
     default:
       return state;
