@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getCryptoDetails } from "store/cryptodetails";
+import { getCryptoTicker, getCandleSticks } from "store/cryptodetails";
 import { Paper } from "@mui/material";
 import { State, Ticker } from "../../../module";
+import PriceChart from "components/PriceChart";
 
 function CryptoDetailsPage() {
   const params = useParams()
@@ -14,9 +15,13 @@ function CryptoDetailsPage() {
 
   const ticker:Ticker = cryptoDetails?.ticker
 
+  let endTime = new Date().toISOString();
+  let startTime = new Date(Date.now() - 86400000).toISOString();
+
 
   useEffect(()=> {
-      dispatch(getCryptoDetails(`${cryptoId}`))
+      dispatch(getCryptoTicker(`${cryptoId}`))
+      dispatch(getCandleSticks(`${cryptoId}`,`${startTime}`,`${endTime}`))
     },[dispatch]);
 
 
@@ -30,8 +35,9 @@ function CryptoDetailsPage() {
           <h1>{cryptoId}</h1>
           <h2>insert name here</h2>
         </hgroup>
+        <PriceChart />
         <ul>
-          <li>{`$${ticker.price}`}</li>
+          <li>{`$${ticker?.price}`}</li>
         </ul>
       </Paper>
     )

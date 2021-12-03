@@ -71,6 +71,7 @@ export interface Action {
 
 interface Cryptodetails {
   ticker: any;
+  candlesticks:any;
 }
 
 export interface Ticker {
