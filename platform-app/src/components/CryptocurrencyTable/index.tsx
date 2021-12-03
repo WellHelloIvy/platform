@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from 'material-ui-search-bar';
 import { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
+import { addToWatchlist } from 'store/watchlists';
 
 const styles = (theme: Theme) =>
   ({
@@ -185,17 +186,19 @@ interface Data {
 }
 
 export default function ReactVirtualizedTable() {
-  //@ts-ignore
+  const watchlistState:any = useSelector((state:State) => state?.watchlists)
+  const arrayOfWatchlists:any = Object.values(watchlistState)
+  const watchlistId = arrayOfWatchlists[0].id
   const dispatch = useDispatch()
   const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies));
 //@ts-ignore
-  const handleWatchlistClick = (id:string) => {
-
+  const handleWatchlistClick = (cryptoId:string, watchlistId:number) => {
+    dispatch(addToWatchlist(cryptoId, watchlistId))
   }
 
   for(let key in currencies) {
     let currency = currencies[key]
-    currency['button'] = <Button onClick={() => handleWatchlistClick(currency.id)}>Add to Watchlist</Button>
+    currency['button'] = <Button onClick={() => handleWatchlistClick(currency.id, watchlistId)}>Add to Watchlist</Button>
   }
   const arrayOfCurrencies = [...currencies]
 
