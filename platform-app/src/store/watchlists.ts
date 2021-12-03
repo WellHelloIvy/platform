@@ -13,7 +13,7 @@ export const getWatchlists = (sessionUserId:number) => async(dispatch:Dispatch):
   if(response.ok){
     const data = await response.json();
     dispatch(loadWatchlists(data));
-    return null;
+    return sessionUserId;
   }
 }
 

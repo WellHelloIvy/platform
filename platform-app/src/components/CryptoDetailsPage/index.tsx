@@ -30,14 +30,14 @@ function CryptoDetailsPage() {
 
 
     return(
-      <Paper>
-        <hgroup>
+      <Paper variant="outlined" >
+        <hgroup >
           <h1>{cryptoId}</h1>
           <h2>insert name here</h2>
         </hgroup>
         <PriceChart />
         <ul>
-          <li>{`$${ticker?.price}`}</li>
+          <li>{`Price: $${ticker?.price}`}</li>
         </ul>
       </Paper>
     )

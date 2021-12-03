@@ -17,16 +17,12 @@ function App() {
 
   useEffect(()=> {
     dispatch(sessionActions.restoreUser())
-    .then((user:any) => {
-      dispatch(getAssets(user?.id))
-      dispatch(getTransactions(user?.id))
-      dispatch(getWatchlists(user?.id))
-      dispatch(getCryptocurrencies())
-    })
-    .then(() => setIsLoaded(true));
-
-
-  }, [dispatch]);
+    .then((user:any) => dispatch(getAssets(user?.id)))
+    .then((id:number) => dispatch(getTransactions(id)))
+    .then((id:number) => dispatch(getWatchlists(id)))
+    .then(() => dispatch(getCryptocurrencies()))
+    .then(() => setIsLoaded(true))
+  },[dispatch]);
 
   return  ( isLoaded ?
     <>

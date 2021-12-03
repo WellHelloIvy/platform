@@ -13,7 +13,7 @@ export const getTransactions = (sessionUserId:number) => async(dispatch: Dispatc
   if(response.ok) {
     const data = await response.json();
     dispatch(loadTransactions(data));
-    return null;
+    return sessionUserId;
   }
 }
 

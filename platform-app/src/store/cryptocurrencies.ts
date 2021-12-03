@@ -8,13 +8,15 @@ const loadCryptocurrencies = (data:any) => ({
   data
 })
 
-export const getCryptocurrencies = () => (dispatch:Dispatch<object>)=> {
+export const getCryptocurrencies = () => async(dispatch: Dispatch<any>):Promise<any> => {
   const options = {method: 'GET', headers: {Accept: 'application/json'}};
 
-  fetch('https://api.exchange.coinbase.com/currencies', options)
-    .then(response => response.json())
-    .then(response => dispatch(loadCryptocurrencies(response)))
-    .catch(err => console.error(err));
+  const response = await fetch('https://api.exchange.coinbase.com/currencies', options)
+    if(response.ok) {
+      const data = await response.json();
+      dispatch(loadCryptocurrencies(data));
+      return null;
+    }
 }
 
 const initialState = {}

@@ -13,7 +13,7 @@ export const getAssets = (sessionUserId:number) => async(dispatch: Dispatch):Pro
     if(response.ok) {
       const data = await response.json();
       dispatch(loadAssets(data));
-      return null;
+      return sessionUserId;
     }
 }
 
