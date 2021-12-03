@@ -6,7 +6,7 @@ const PriceChart = () => {
   const candleStickData = useSelector((state:State) => state.cryptodetails?.candlesticks)
 
   return(
-    <LineChart width={400} height={400} data={candleStickData}>
+    <LineChart width={800} height={200} data={candleStickData}>
       <Line type="monotone" dataKey="closingPrice" stroke="#8884d8" dot={false} />
     </LineChart>
   )

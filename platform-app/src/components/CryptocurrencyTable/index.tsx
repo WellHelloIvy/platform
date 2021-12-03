@@ -14,6 +14,8 @@ import {
 } from 'react-virtualized';
 import { State } from '../../../module';
 import { Link } from 'react-router-dom';
+import SearchBar from 'material-ui-search-bar';
+import { useState, useEffect } from 'react';
 
 const styles = (theme: Theme) =>
   ({
@@ -182,14 +184,31 @@ interface Data {
 }
 
 
-let rows: Array<any> = [];
+// let rows: Array<any> = [];
 
 export default function ReactVirtualizedTable() {
-  const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies))
-  rows = [...currencies]
+  const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies));
+  const arrayOfCurrencies = [...currencies]
+
+  const [rows, setRows] = useState(arrayOfCurrencies);
+  const copyOfRows = [...currencies]
+
+  const [searchValue, setSearchValue] = useState('');
+
+    useEffect(() => {
+      if(!searchValue) return;
+      let searchResults = copyOfRows.filter((row) => row.id.toLowerCase().includes(searchValue.toLowerCase()) || row.name.toLowerCase().includes(searchValue.toLowerCase()))
+      setRows(searchResults)
+    }, [searchValue])
+
 
   return (
     <Paper style={{ height: 400, width: '50%' }}>
+      <SearchBar
+        value={searchValue}
+        onChange={(searchQuery) => setSearchValue(searchQuery)}
+        onCancelSearch={}
+      />
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
@@ -200,14 +219,9 @@ export default function ReactVirtualizedTable() {
             dataKey: 'id',
           },
           {
-            width: 120,
+            width: 300,
             label: 'Name',
             dataKey: 'name',
-          },
-          {
-            width: 120,
-            label: '',
-            dataKey: '',
           },
         ]}
       />
