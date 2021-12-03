@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { withStyles, WithStyles } from '@mui/styles';
 import { Theme, createTheme } from '@mui/material/styles';
@@ -16,6 +16,7 @@ import { State } from '../../../module';
 import { Link } from 'react-router-dom';
 import SearchBar from 'material-ui-search-bar';
 import { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
 
 const styles = (theme: Theme) =>
   ({
@@ -184,7 +185,17 @@ interface Data {
 }
 
 export default function ReactVirtualizedTable() {
+  const dispatch = useDispatch()
   const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies));
+
+  const handleWatchlistClick = (id:string) => {
+    
+  }
+
+  for(let key in currencies) {
+    let currency = currencies[key]
+    currency['button'] = <Button onClick={() => handleWatchlistClick(currency.id)}>Add to Watchlist</Button>
+  }
   const arrayOfCurrencies = [...currencies]
 
   const [rows, setRows] = useState(arrayOfCurrencies);
@@ -222,6 +233,11 @@ export default function ReactVirtualizedTable() {
             width: 300,
             label: 'Name',
             dataKey: 'name',
+          },
+          {
+            width: 300,
+            label: 'Add to Watchlist',
+            dataKey: 'button',
           },
         ]}
       />

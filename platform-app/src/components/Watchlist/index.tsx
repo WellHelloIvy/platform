@@ -7,11 +7,14 @@ function Watchlist() {
 
 
   return(
-      <>
-        {currenciesOnWatchlist.map((crypto:any) => <Link to={`/cryptocurrencies/${crypto.cryptoId}`}>{crypto.cryptoId}</Link>
-
-          )}
-      </>
+      <section>
+        <h1>Your Watchlist</h1>
+        {currenciesOnWatchlist.map((crypto:any) => {
+          return <>
+            <Link to={`/cryptocurrencies/${crypto.cryptoId}`}>{crypto.cryptoId}</Link>
+          </>
+         })}
+      </section>
     )
 }
 export default Watchlist
