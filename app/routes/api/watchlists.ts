@@ -5,14 +5,17 @@ import db from '../../db/models'
 const router:any = express.Router();
 
 router.post(
-  '/',
+  '/:watchlistId',
   expressAsyncHandler(async(req, res): Promise<any> => {
     const { watchlistId, cryptoId } = req.body;
-    const watchlistCrypto = await db.WatchlistCrypto.create({
+    await db.WatchlistCrypto.create({
       watchlistId, cryptoId
     })
+    const watchlist = await db.Watchlist.findByPk(watchlistId)
     return res.json({
-      asset
+      watchlist
      })
   })
 )
+
+export default router
