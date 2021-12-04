@@ -3,8 +3,10 @@ import Watchlist from "components/Watchlist";
 function Dashboard({ sessionUser }:any) {
 
 
-  return(
+  return( sessionUser ?
     <Watchlist sessionUser={sessionUser} />
+    :
+    <>splash page</>
   )
 }
 export default Dashboard;
