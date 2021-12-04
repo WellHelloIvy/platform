@@ -43,7 +43,7 @@ const styles = (theme: Theme) =>
     },
     tableRowHover: {
       '&:hover': {
-        backgroundColor: theme.palette.grey[200],
+        backgroundColor: 'theme.palette.grey[200]',
       },
     },
     tableCell: {
@@ -81,7 +81,7 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   static defaultProps = {
     headerHeight: 48,
     rowHeight: 48,
- 
+
   };
 
   getRowClassName = ({ index }: Row) => {

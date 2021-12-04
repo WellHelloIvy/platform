@@ -21,4 +21,12 @@
 #modal-content {
   position: absolute;
   background-color:white;
+  min-height: fit-content;
+  width: fit-content;
+  padding: 2%;
+}
+
+#modal-content form {
+  display: flex;
+  flex-direction: column;
 }

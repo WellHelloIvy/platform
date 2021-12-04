@@ -26,54 +26,54 @@ function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Sign Up</h1>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
-        First Name
+      <label>First Name</label>
         <input
+        id='firstName'
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Last Name
+
+      <label htmlFor='lastName'>Last Name</label>
         <input
+          id='lastName'
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Email
+
+      <label htmlFor='email'>Email</label>
         <input
+          id='email'
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Password
+      <label htmlFor='password'>Password</label>
         <input
+        id='password'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Confirm Password
+
+      <label htmlFor='confirmPassword'>Confirm Password</label>
         <input
+          id='confirmPassword'
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-      </label>
+
       <button type="submit">Sign Up</button>
     </form>
   );
