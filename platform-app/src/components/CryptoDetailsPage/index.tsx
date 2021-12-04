@@ -5,33 +5,35 @@ import { getCryptoTicker, getCandleSticks } from "store/cryptodetails";
 import { Paper } from "@mui/material";
 import { State, Ticker } from "../../../module";
 import PriceChart from "components/PriceChart";
+import './cryptoDetailsPage.css'
 
 function CryptoDetailsPage() {
   const params = useParams()
   const cryptoId = params?.cryptoId
-  const dispatch:any = useDispatch()
+  const dispatch: any = useDispatch()
   const [yesterdaysClosingPrice, setYesterdaysClosingPrice] = useState(0)
 
-  const cryptoDetails = useSelector((state:State) => state.cryptodetails)
+  const cryptoDetails = useSelector((state: State) => state.cryptodetails)
 
-  const ticker:Ticker = cryptoDetails?.ticker
+  const ticker: Ticker = cryptoDetails?.ticker
 
   let endTime = new Date().toISOString();
   let startTime = new Date(Date.now() - 86400000).toISOString();
 
   useEffect(() => {
-      dispatch(getCryptoTicker(`${cryptoId}`))
-      dispatch(getCandleSticks(`${cryptoId}`,`${startTime}`,`${endTime}`))
-      .then((yesterdaysClosingPrice:any) => {setYesterdaysClosingPrice(yesterdaysClosingPrice)})
-    },[dispatch]);
+    dispatch(getCryptoTicker(`${cryptoId}`))
+    dispatch(getCandleSticks(`${cryptoId}`, `${startTime}`, `${endTime}`))
+      .then((yesterdaysClosingPrice: any) => { setYesterdaysClosingPrice(yesterdaysClosingPrice) })
+  }, [dispatch]);
 
   const calculatePercentageChange = () => {
-    const currentPrice:any = ticker?.price
-    const percentageChange = ((currentPrice - yesterdaysClosingPrice)/yesterdaysClosingPrice * 100);
+    const currentPrice: any = ticker?.price
+    const percentageChange = ((currentPrice - yesterdaysClosingPrice) / yesterdaysClosingPrice * 100);
     return percentageChange.toFixed(2)
   }
 
-    return(
+  return (
+    <section className='container'>
       <Paper variant="outlined" >
         <hgroup >
           <h1>{cryptoId}</h1>
@@ -43,7 +45,9 @@ function CryptoDetailsPage() {
           <li>{`% Change: ${calculatePercentageChange()}`}</li>
         </ul>
       </Paper>
-    )
+    </section>
+
+  )
 }
 
 export default CryptoDetailsPage;

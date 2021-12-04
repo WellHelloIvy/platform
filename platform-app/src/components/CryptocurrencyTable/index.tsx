@@ -16,43 +16,43 @@ import { State } from '../../../module';
 import { Link } from 'react-router-dom';
 import SearchBar from 'material-ui-search-bar';
 import { useState, useEffect } from 'react';
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { addToWatchlist } from 'store/watchlists';
 
 const styles = (theme: Theme) =>
-  ({
-    flexContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      boxSizing: 'border-box',
+({
+  flexContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+  },
+  table: {
+    // temporary right-to-left patch, waiting for
+    // https://github.com/bvaughn/react-virtualized/issues/454
+    '& .ReactVirtualized__Table__headerRow': {
+      ...(theme.direction === 'rtl' && {
+        paddingLeft: '0 !important',
+      }),
+      ...(theme.direction !== 'rtl' && {
+        paddingRight: undefined,
+      }),
     },
-    table: {
-      // temporary right-to-left patch, waiting for
-      // https://github.com/bvaughn/react-virtualized/issues/454
-      '& .ReactVirtualized__Table__headerRow': {
-        ...(theme.direction === 'rtl' && {
-          paddingLeft: '0 !important',
-        }),
-        ...(theme.direction !== 'rtl' && {
-          paddingRight: undefined,
-        }),
-      },
+  },
+  tableRow: {
+    cursor: 'pointer',
+  },
+  tableRowHover: {
+    '&:hover': {
+      backgroundColor: 'theme.palette.grey[200]',
     },
-    tableRow: {
-      cursor: 'pointer',
-    },
-    tableRowHover: {
-      '&:hover': {
-        backgroundColor: 'theme.palette.grey[200]',
-      },
-    },
-    tableCell: {
-      flex: 1,
-    },
-    noClick: {
-      cursor: 'initial',
-    },
-  } as const);
+  },
+  tableCell: {
+    flex: 1,
+  },
+  noClick: {
+    cursor: 'initial',
+  },
+} as const);
 
 interface ColumnData {
   dataKey: string;
@@ -93,26 +93,26 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   };
 
   cellRenderer: TableCellRenderer = ({ cellData, columnIndex }) => {
-    const { columns, classes, rowHeight, onRowClick }:any = this.props;
+    const { columns, classes, rowHeight, onRowClick }: any = this.props;
 
     return (
-        <TableCell
-          component="div"
-          className={clsx(classes.tableCell, classes.flexContainer, {
-            [classes.noClick]: onRowClick == null,
-          })}
-          variant="body"
-          style={{ height: rowHeight }}
-          align={
-            (columnIndex != null && columns[columnIndex].numeric) || false
-              ? 'right'
-              : 'left'
-          }
-        >
-          {columnIndex===0 ? <Link to={`/cryptocurrencies/${cellData}`}>
+      <TableCell
+        component="div"
+        className={clsx(classes.tableCell, classes.flexContainer, {
+          [classes.noClick]: onRowClick == null,
+        })}
+        variant="body"
+        style={{ height: rowHeight }}
+        align={
+          (columnIndex != null && columns[columnIndex].numeric) || false
+            ? 'right'
+            : 'left'
+        }
+      >
+        {columnIndex === 0 ? <Link to={`/cryptocurrencies/${cellData}`}>
           {cellData}
-          </Link> : cellData}
-        </TableCell>
+        </Link> : cellData}
+      </TableCell>
 
     );
   };
@@ -121,7 +121,7 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
     label,
     columnIndex,
   }: TableHeaderProps & { columnIndex: number }) => {
-    const { headerHeight, columns, classes }:any = this.props;
+    const { headerHeight, columns, classes }: any = this.props;
 
     return (
       <TableCell
@@ -137,10 +137,10 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   };
 
   render() {
-    const { classes, columns, rowHeight, headerHeight, ...tableProps }:any = this.props;
+    const { classes, columns, rowHeight, headerHeight, ...tableProps }: any = this.props;
     return (
       <AutoSizer>
-        {({ height, width }:any) => (
+        {({ height, width }: any) => (
           <Table
             height={height}
             width={width}
@@ -153,11 +153,11 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
             {...tableProps}
             rowClassName={this.getRowClassName}
           >
-            {columns.map(({ dataKey, ...other }:any, index:any) => {
+            {columns.map(({ dataKey, ...other }: any, index: any) => {
               return (
                 <Column
                   key={dataKey}
-                  headerRenderer={(headerProps:any) =>
+                  headerRenderer={(headerProps: any) =>
                     this.headerRenderer({
                       ...headerProps,
                       columnIndex: index,
@@ -182,21 +182,21 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTabl
 
 interface Data {
   id: string;
-  name:string;
+  name: string;
 }
 
 export default function ReactVirtualizedTable() {
-  const watchlistState:any = useSelector((state:State) => state?.watchlists)
-  const arrayOfWatchlists:any = Object.values(watchlistState)
+  const watchlistState: any = useSelector((state: State) => state?.watchlists)
+  const arrayOfWatchlists: any = Object.values(watchlistState)
   const watchlistId = arrayOfWatchlists[0].id
   const dispatch = useDispatch()
-  const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies));
+  const currencies = Object.values(useSelector((state: State) => state.cryptocurrencies));
 
-  const handleWatchlistClick = (cryptoId:string, watchlistId:number) => {
+  const handleWatchlistClick = (cryptoId: string, watchlistId: number) => {
     dispatch(addToWatchlist(cryptoId, watchlistId))
   }
 
-  for(let key in currencies) {
+  for (let key in currencies) {
     let currency = currencies[key]
     currency['button'] = <Button onClick={() => handleWatchlistClick(currency.id, watchlistId)}>Add to Watchlist</Button>
   }
@@ -208,43 +208,49 @@ export default function ReactVirtualizedTable() {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    if(!searchValue) return;
+    if (!searchValue) return;
     let searchResults = copyOfRows.filter((row) => row.id.toLowerCase().includes(searchValue.toLowerCase()) || row.name.toLowerCase().includes(searchValue.toLowerCase()))
     setRows(searchResults)
-   }, [searchValue])
+  }, [searchValue])
 
   const handleCancel = () => {
-   setRows(arrayOfCurrencies)
+    setRows(arrayOfCurrencies)
   }
 
   return (
-    <Paper style={{ height: 400, width: '50%' }}>
-      <SearchBar
-        value={searchValue}
-        onChange={(searchQuery) => setSearchValue(searchQuery)}
-        onCancelSearch={() => handleCancel()}
-      />
-      <VirtualizedTable
-        rowCount={rows.length}
-        rowGetter={({ index }) => rows[index]}
-        columns={[
-          {
-            width: 120,
-            label: 'Ticker Symbol',
-            dataKey: 'id',
-          },
-          {
-            width: 300,
-            label: 'Name',
-            dataKey: 'name',
-          },
-          {
-            width: 300,
-            label: 'Add to Watchlist',
-            dataKey: 'button',
-          },
-        ]}
-      />
-    </Paper>
+    <Grid container>
+      <Grid item sx={{ mx: "auto", width: "200%" }}>
+        <Paper style={{ height: '600%' }}>
+          <SearchBar
+            value={searchValue}
+            onChange={(searchQuery) => setSearchValue(searchQuery)}
+            onCancelSearch={() => handleCancel()}
+          />
+          <VirtualizedTable
+            rowCount={rows.length}
+            rowGetter={({ index }) => rows[index]}
+        
+            columns={[
+              {
+                width: 120,
+                label: 'Ticker Symbol',
+                dataKey: 'id',
+              },
+              {
+                width: 300,
+                label: 'Name',
+                dataKey: 'name',
+              },
+              {
+                width: 300,
+                label: 'Add to Watchlist',
+                dataKey: 'button',
+              },
+            ]}
+          />
+        </Paper>
+      </Grid>
+    </Grid>
+
   );
 }

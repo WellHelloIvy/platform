@@ -56,6 +56,7 @@ const cryptoDetailsReducer = (state = initialState, action: Action) => {
       newState = Object.assign({}, state);
       newState['candlesticks'] = action.data.map((dataPoint:Array<number>) => {
         return {
+          'date':dataPoint[0],
           'closingPrice': dataPoint[4]
         }
       })
