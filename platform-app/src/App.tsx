@@ -9,6 +9,8 @@ import CryptoDetailsPage from "components/CryptoDetailsPage";
 import Dashboard from "components/Dashboard";
 import { State } from "../module";
 import { getAllWatchlists } from "store/watchlists";
+import { ThemeProvider} from '@mui/material/styles';
+import theme from './components/theme'
 
 
 function App() {
@@ -29,12 +31,14 @@ function App() {
 
   return  (
     <>
+    <ThemeProvider theme={theme}>
       <Navigation />
       <Routes>
         <Route path='/' element={<Dashboard sessionUser={sessionUser}/>} />
         <Route path='/cryptocurrencies' element={<CryptosPage />} />
         <Route path='/cryptocurrencies/:cryptoId' element={<CryptoDetailsPage />} />
       </Routes>
+      </ThemeProvider>
     </>
   );
 }
