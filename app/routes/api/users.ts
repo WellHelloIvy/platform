@@ -9,7 +9,7 @@ const router:any = express.Router();
 router.post(
   '/',
   validateSignup,
-  expressAsyncHandler(async (req, res): Promise<any> => {
+  expressAsyncHandler(async (req:any, res:any)=> {
     const { firstName, lastName, email, password } = req.body;
     const user = await db.User.signup({ firstName, lastName, email, password });
 

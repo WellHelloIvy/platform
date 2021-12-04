@@ -37,9 +37,9 @@ interface Cookie {
 }
 
 const restoreUser = (req:any, res:any, next:any) => {
-  const { token } = req.cookies;
+  const { token }:Cookie = req.cookies;
 
-  return jwt.verify(token, secret, async (err:any, jwtPayload:any): Promise<any> => {
+  return jwt.verify(token, secret, async (err:any, jwtPayload:any) => {
     if (err) {
       return next();
     }

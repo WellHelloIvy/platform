@@ -24,7 +24,7 @@ router.get(
 router.post(
   '/',
   validateLogin,
-  expressAsyncHandler(async (req:any, res:any, next:any): Promise<any> => {
+  expressAsyncHandler(async (req:any, res:any, next:any) => {
     const { email, password } = req.body;
 
     const user = await db.User.login({ email, password });

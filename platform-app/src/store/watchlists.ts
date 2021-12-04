@@ -9,12 +9,21 @@ const loadWatchlists = (data:Array<Watchlist>) => ({
   data
 })
 
+export const getAllWatchlists = () => async(dispatch:Dispatch):Promise<any> => {
+  const response = await fetch(`/api/watchlists`)
+  if(response.ok){
+    const data = await response.json();
+    dispatch(loadWatchlists(data));
+    return null;
+  }
+}
+
 export const getWatchlists = (sessionUserId:number) => async(dispatch:Dispatch):Promise<any> => {
   const response = await fetch(`/api/users/${sessionUserId}/watchlists`)
   if(response.ok){
     const data = await response.json();
     dispatch(loadWatchlists(data));
-    return sessionUserId;
+    return null;
   }
 }
 

@@ -1,15 +1,12 @@
 import Watchlist from "components/Watchlist";
-import { useSelector } from "react-redux";
-import { State } from "../../../module";
 
-function Dashboard() {
- const sessionUser = useSelector((state:State) => state.session?.user)
-  return(sessionUser?
-    <>
-      <Watchlist />
-    </>
+function Dashboard({ sessionUser }:any) {
+
+
+  return( sessionUser ?
+    <Watchlist sessionUser={sessionUser} />
     :
-    <>Splash Page</>
+    <>splash page</>
   )
 }
 export default Dashboard;
