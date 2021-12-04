@@ -1,5 +1,5 @@
 'use strict';
-import { Model, Optional, Transaction } from 'sequelize';
+import { Model, Optional} from 'sequelize';
 import bcrypt from 'bcryptjs';
 
 interface UserAttributes {
@@ -48,8 +48,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
     }
 
     toSafeObject = () => {
-      const { id, email } = this;
-      return { id, email };
+      const { id, firstName, lastName, email, cashBalance } = this;
+      return { id, firstName, lastName, email, cashBalance };
     }
 
     validatePassword = (password: string) => {

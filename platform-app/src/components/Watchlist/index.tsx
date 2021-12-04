@@ -1,26 +1,23 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import {useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import { State } from "../../../module"
 import { Button } from "@mui/material";
 import { removeFromWatchlist } from "store/watchlists";
 
 
-function Watchlist() {
+
+function Watchlist({ sessionUser }:any) {
   const dispatch = useDispatch()
-  const watchlistState: any = useSelector((state: State) => state?.watchlists)
-  const arrayOfWatchlists: any = Object.values(watchlistState)
-  const watchlist = arrayOfWatchlists[0]
-  const spreadOfWatchlist = watchlist.WatchlistCryptos.slice()
 
-  const [currenciesOnWatchlist, setCurrenciesOnWatchlist] = useState(spreadOfWatchlist)
+  const watchlistState:any = useSelector((state:State) => state.watchlists)
+  const arrayOfWatchlists = Object.values(watchlistState)
+  const userWatchlists = arrayOfWatchlists.filter((watchlist:any) => watchlist.uderId === sessionUser?.Id)
+  const defaultWatchlist:any = userWatchlists[0]
+  const currenciesOnWatchlist = defaultWatchlist.WatchlistCryptos
+
   const handleRemoveClick = (cryptoId:any) => {
-    dispatch(removeFromWatchlist(cryptoId, watchlist.id))
+    dispatch(removeFromWatchlist(cryptoId, defaultWatchlist.id))
   }
-
-  useEffect(() =>{
-    setCurrenciesOnWatchlist([...watchlist.WatchlistCryptos])
-  }, [watchlistState])
 
   return (
     <section>

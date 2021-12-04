@@ -4,7 +4,7 @@ export interface CurrentUser {
   firstName: string;
   lastName: string;
   email: string;
-  cashBalance: number;
+  cashBalance?: number;
 }
 
 export interface SignupUser {

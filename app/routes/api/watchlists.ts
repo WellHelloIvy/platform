@@ -5,6 +5,16 @@ import db from '../../db/models'
 
 const router:any = express.Router();
 
+router.get(
+  '/',
+  expressAsyncHandler(async(req, res): Promise<any> => {
+    const watchlists = await db.Watchlist.findAll({
+      include: {model: db.WatchlistCrypto}
+    })
+    return res.json(watchlists)
+  })
+)
+
 router.post(
   '/:watchlistId',
   expressAsyncHandler(async(req, res): Promise<any> => {

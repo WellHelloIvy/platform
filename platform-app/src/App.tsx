@@ -1,40 +1,40 @@
 import { useState, useEffect } from "react";
-import { useDispatch, } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route} from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "components/Navigation";
-import { getWatchlists } from "store/watchlists";
 import { getCryptocurrencies } from "store/cryptocurrencies";
 import CryptosPage from "components/CryptosPage";
 import CryptoDetailsPage from "components/CryptoDetailsPage";
 import Dashboard from "components/Dashboard";
-
+import { State } from "../module";
+import { getAllWatchlists } from "store/watchlists";
 
 
 function App() {
   const dispatch:any = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector((state:State) => state.session?.user)
 
   useEffect(()=> {
-    dispatch(sessionActions.restoreUser())
-    .then((user:any) => dispatch(getWatchlists(user.id)))
-    .then(() => dispatch(getCryptocurrencies()))
-    .then(() => setIsLoaded(true))
-    .catch(() => setIsLoaded(true))
-  },[dispatch]);
+    (async () => {
+      await dispatch(sessionActions.restoreUser())
+      await dispatch(getCryptocurrencies())
+      await dispatch(getAllWatchlists())
+      setIsLoaded(true)
+    })();
+  },[dispatch, isLoaded]);
 
-  return  ( isLoaded ?
+  if(!isLoaded) return null;
+
+  return  (
     <>
       <Navigation />
       <Routes>
-        <Route path='/' element={<Dashboard />} />
+        <Route path='/' element={<Dashboard sessionUser={sessionUser}/>} />
         <Route path='/cryptocurrencies' element={<CryptosPage />} />
         <Route path='/cryptocurrencies/:cryptoId' element={<CryptoDetailsPage />} />
       </Routes>
-    </>
-
-    :
-    <>
     </>
   );
 }

@@ -48,14 +48,13 @@ export class CustomError extends Error {
     this.title = '';
     this.errors= [];
     this.status= 0
-    Object.setPrototypeOf(this, CustomError.prototype)
   }
 }
 
 type err = CustomError | ValidationError;
 
 
-app.use((_req, _res, next) => {
+app.use((_req:any, _res:any, next:any) => {
   const err = new CustomError("The requested resource couldn't be found.");
   err.title = "Resource Not Found";
   err.errors = ["The requested resource couldn't be found."];
