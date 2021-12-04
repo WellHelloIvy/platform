@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { Button } from '@mui/material';
 
 function Logout(){
   const dispatch = useDispatch();
@@ -9,7 +10,7 @@ function Logout(){
   };
 
   return(
-    <button onClick={logout}>Log Out</button>
+    <Button onClick={logout}>Log Out</Button>
   )
 }
 
