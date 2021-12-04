@@ -12,7 +12,7 @@ function CryptoDetailsPage() {
   const cryptoId = params?.cryptoId
   const dispatch: any = useDispatch()
   const [yesterdaysClosingPrice, setYesterdaysClosingPrice] = useState(0)
-
+  const crypto = useSelector((state: State) => state.cryptocurrencies[`${cryptoId}`])
   const cryptoDetails = useSelector((state: State) => state.cryptodetails)
 
   const ticker: Ticker = cryptoDetails?.ticker
@@ -37,7 +37,7 @@ function CryptoDetailsPage() {
       <Paper variant="outlined" >
         <hgroup >
           <h1>{cryptoId}</h1>
-          <h2>insert name here</h2>
+          <h2>{crypto.name}</h2>
         </hgroup>
         <PriceChart />
         <ul>

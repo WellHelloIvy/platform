@@ -9,8 +9,8 @@ const PriceChart = () => {
     <LineChart width={800} height={200} data={candleStickData}>
       <Line type="monotone" dataKey="closingPrice" stroke="#8884d8" dot={false} />
       <CartesianGrid stroke="#ccc" strokeDasharray="1 1"/>
-      <XAxis dataKey="name" />
-      <YAxis />
+      <XAxis dataKey="date" hide={true}/>
+      <YAxis  domain={['dataMin', 'dataMax']}/>
       <Tooltip />
     </LineChart>
   )
