@@ -218,39 +218,40 @@ export default function ReactVirtualizedTable() {
   }
 
   return (
-    <Grid container>
-      <Grid item sx={{ mx: "auto", width: "200%" }}>
-        <Paper style={{ height: '600%' }}>
-          <SearchBar
-            value={searchValue}
-            onChange={(searchQuery) => setSearchValue(searchQuery)}
-            onCancelSearch={() => handleCancel()}
-          />
-          <VirtualizedTable
-            rowCount={rows.length}
-            rowGetter={({ index }) => rows[index]}
-        
-            columns={[
-              {
-                width: 120,
-                label: 'Ticker Symbol',
-                dataKey: 'id',
-              },
-              {
-                width: 300,
-                label: 'Name',
-                dataKey: 'name',
-              },
-              {
-                width: 300,
-                label: 'Add to Watchlist',
-                dataKey: 'button',
-              },
-            ]}
-          />
-        </Paper>
-      </Grid>
-    </Grid>
+    <section className='container'>
+      <Grid container>
+        <Grid item sx={{ mx: "auto", width: "200%" }}>
+          <Paper elevation={0} style={{ height: '800%' }}>
+            <SearchBar
+              value={searchValue}
+              onChange={(searchQuery) => setSearchValue(searchQuery)}
+              onCancelSearch={() => handleCancel()}
+            />
+            <VirtualizedTable
+              rowCount={rows.length}
+              rowGetter={({ index }) => rows[index]}
 
+              columns={[
+                {
+                  width: 120,
+                  label: 'Ticker Symbol',
+                  dataKey: 'id',
+                },
+                {
+                  width: 300,
+                  label: 'Name',
+                  dataKey: 'name',
+                },
+                {
+                  width: 300,
+                  label: 'Add to Watchlist',
+                  dataKey: 'button',
+                },
+              ]}
+            />
+          </Paper>
+        </Grid>
+      </Grid>
+    </section>
   );
 }

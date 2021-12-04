@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getCryptoTicker, getCandleSticks } from "store/cryptodetails";
-import { Paper } from "@mui/material";
 import { State, Ticker } from "../../../module";
 import PriceChart from "components/PriceChart";
 import './cryptoDetailsPage.css'
@@ -34,7 +33,6 @@ function CryptoDetailsPage() {
 
   return (
     <section className='container'>
-      <Paper variant="outlined" >
         <hgroup >
           <h1>{cryptoId}</h1>
           <h2>{crypto.name}</h2>
@@ -44,7 +42,6 @@ function CryptoDetailsPage() {
           <li>{`Price: $${ticker?.price}`}</li>
           <li>{`% Change: ${calculatePercentageChange()}`}</li>
         </ul>
-      </Paper>
     </section>
 
   )
