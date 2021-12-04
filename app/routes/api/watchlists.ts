@@ -15,6 +15,7 @@ router.post(
     const watchlist = await db.Watchlist.findByPk(watchlistId,{
       include: {model: db.WatchlistCrypto}
     })
+
     return res.json(
       [watchlist]
      )

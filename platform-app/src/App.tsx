@@ -3,8 +3,6 @@ import { useDispatch, } from "react-redux";
 import { Routes, Route} from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "components/Navigation";
-import { getAssets } from "store/assets";
-import { getTransactions } from "store/transactions";
 import { getWatchlists } from "store/watchlists";
 import { getCryptocurrencies } from "store/cryptocurrencies";
 import CryptosPage from "components/CryptosPage";
@@ -19,11 +17,10 @@ function App() {
 
   useEffect(()=> {
     dispatch(sessionActions.restoreUser())
-    .then((user:any) => dispatch(getAssets(user?.id)))
-    .then((id:number) => dispatch(getTransactions(id)))
-    .then((id:number) => dispatch(getWatchlists(id)))
+    .then((user:any) => dispatch(getWatchlists(user.id)))
     .then(() => dispatch(getCryptocurrencies()))
     .then(() => setIsLoaded(true))
+    .catch(() => setIsLoaded(true))
   },[dispatch]);
 
   return  ( isLoaded ?

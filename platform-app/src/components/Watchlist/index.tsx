@@ -11,9 +11,9 @@ function Watchlist() {
   const watchlistState: any = useSelector((state: State) => state?.watchlists)
   const arrayOfWatchlists: any = Object.values(watchlistState)
   const watchlist = arrayOfWatchlists[0]
+  const spreadOfWatchlist = watchlist.WatchlistCryptos.slice()
 
-
-  const [currenciesOnWatchlist, setCurrenciesOnWatchlist] = useState([...watchlist.WatchlistCryptos])
+  const [currenciesOnWatchlist, setCurrenciesOnWatchlist] = useState(spreadOfWatchlist)
   const handleRemoveClick = (cryptoId:any) => {
     dispatch(removeFromWatchlist(cryptoId, watchlist.id))
   }
