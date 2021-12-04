@@ -81,7 +81,7 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   static defaultProps = {
     headerHeight: 48,
     rowHeight: 48,
-    onRowClick: ""
+ 
   };
 
   getRowClassName = ({ index }: Row) => {
@@ -191,7 +191,7 @@ export default function ReactVirtualizedTable() {
   const watchlistId = arrayOfWatchlists[0].id
   const dispatch = useDispatch()
   const currencies = Object.values(useSelector((state:State) => state.cryptocurrencies));
-//@ts-ignore
+
   const handleWatchlistClick = (cryptoId:string, watchlistId:number) => {
     dispatch(addToWatchlist(cryptoId, watchlistId))
   }
