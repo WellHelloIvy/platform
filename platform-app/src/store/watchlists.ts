@@ -37,6 +37,17 @@ export const addToWatchlist = (cryptoId:string, watchlistId:number) => async(dis
   }
 }
 
+export const removeFromWatchlist = (cryptoId:string, watchlistId:number) => async(dispatch:Dispatch):Promise<any> => {
+  const response = await csrfFetch(`/api/watchlists/${watchlistId}/watchlistcryptos/${cryptoId}`, {
+    method: 'DELETE'
+  })
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(loadWatchlists(data))
+    return null;
+  }
+}
+
 const initialState = {}
 
 const watchlistsReducer = (state = initialState, action: Action) => {
