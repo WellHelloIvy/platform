@@ -44,7 +44,7 @@ const styles = (theme: Theme) =>
   },
   tableRowHover: {
     '&:hover': {
-      backgroundColor: 'theme.palette.grey[200]',
+      backgroundColor: '#ffd600',
     },
   },
   tableCell: {
@@ -60,6 +60,7 @@ interface ColumnData {
   label: string;
   numeric?: boolean;
   width: number;
+  align?: string;
 }
 
 interface Row {
@@ -240,7 +241,8 @@ export default function ReactVirtualizedTable() {
                 },
                 {
                   width: 300,
-                  label: 'Add to Watchlist',
+                  label: 'Add to/Remove from Watchlist',
+                  align: 'right',
                   dataKey: 'button',
                 },
               ]}
