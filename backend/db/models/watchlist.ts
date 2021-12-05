@@ -21,7 +21,7 @@ module.exports = (sequelize:any, DataTypes:any) => {
       Watchlist.belongsTo(models.User, {foreignKey:'userId'} )
     }
 
-    static async createWatchlist({ id }:any) {
+    static async createWatchlist(id :any) {
       const watchlist = await Watchlist.create({
         name: 'Watchlist',
         userId: id
