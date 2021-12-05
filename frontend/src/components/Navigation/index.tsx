@@ -8,6 +8,7 @@ import * as React from 'react';
 import { Box, Tabs, Tab } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
 import { Stack } from '@mui/material';
+import DemoButton from 'components/Demo';
 
 function Navigation() {
   const sessionUser = useSelector((state: State) => state.session.user);
@@ -38,6 +39,7 @@ function Navigation() {
       <Stack direction='row' spacing={2} style={{justifyContent:'flex-end'}}>
         <LoginFormModal />
         <SignupFormModal />
+        <DemoButton />
       </Stack>
     );
   }

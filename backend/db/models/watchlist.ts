@@ -18,6 +18,15 @@ module.exports = (sequelize:any, DataTypes:any) => {
 
     static associate(models:any) {
       Watchlist.hasMany(models.WatchlistCrypto, {foreignKey: 'watchlistId'})
+      Watchlist.belongsTo(models.User, {foreignKey:'userId'} )
+    }
+
+    static async createWatchlist({ id }:any) {
+      const watchlist = await Watchlist.create({
+        name: 'Watchlist',
+        userId: id
+      });
+      return await Watchlist.findByPk(watchlist.id);
     }
   };
 

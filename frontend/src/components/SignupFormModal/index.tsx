@@ -8,7 +8,7 @@ function SignupFormModal() {
 
   return (
     <>
-      <Button variant="contained" onClick={() => setShowModal(true)} >Sign Up</Button>
+      <Button variant="outlined" color='primary' onClick={() => setShowModal(true)} >Sign Up</Button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <SignupForm />

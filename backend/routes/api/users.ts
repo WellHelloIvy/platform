@@ -15,8 +15,10 @@ router.post(
 
     await setTokenCookie(res, user);
 
+    await db.Watchlist.createWatchlist(user.id)
+
     return res.json({
-      user,
+      user
     });
   }),
 );
