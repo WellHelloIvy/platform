@@ -5,20 +5,18 @@
 **DYOR** is a web application for users to view specific cryptocurrencies and their details. 
 Users may search for cryptocurrencies by name and ticker symbol, add cryptocurrencies to their watchlist, and view the price, percentage change and 24 hour price chart for each currency.
 
-##[Click here to visit the DYOR live site!](https://dyor-platform.herokuapp.com/cryptocurrencies)
+## [Click here to visit the DYOR live site!](https://dyor-platform.herokuapp.com/cryptocurrencies)
 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Livelink](#live-link)
-3. [How to install/start DYOR](#how-to-use)
-4. [High-level Architectural Overview](#architechtural-overview)
-5. [Architechtural Design Pattern](#mvc)
-6. [REST API expected payload and response](#payload-response)
-7. [Distinct Design Decisions](#app-design-decisions)
-8. [User flow](#views-and-flow)
-9. [Reusable Component](#reusable-component)
-10. [5 MUI Components]
+2. [How to install/start DYOR](#how-to-install-and-run-dyor)
+3. [High-level Architectural Overview](#architectural-overview-and-relavent-data-models)
+4. [Architechtural Design Pattern](#architectural-pattern)
+5. [REST API expected payload and response](#rest-api)
+6. [User flow and Distinct Design Decision](#views-user-flow-and-distinct-design-decision)
+7. [Reusable Component](#reusable-component)
+8. [5 MUI Components](#5-mui-components)
 
 ## How to install and run DYOR
 
@@ -68,7 +66,7 @@ The app follows a Model-View-Controller architectural pattern. This architecture
 
 ## REST API
 
-## View and User flow
+## Views, User flow, and Distinct Design Decision
 Upon navigation to the website, the user will be presented with a Splash Page. The user may signup, login (if they already have an account), or use the demo button.
 ![](https://i.imgur.com/IGMM666.png)
 
