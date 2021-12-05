@@ -17,6 +17,8 @@ Users may search for cryptocurrencies by name and ticker symbol, add cryptocurre
 6. [REST API expected payload and response](#payload-response)
 7. [Distinct Design Decisions](#app-design-decisions)
 8. [User flow](#views-and-flow)
+9. [Reusable Component](#reusable-component)
+10. [5 MUI Components]
 
 ## How to install and run DYOR
 
@@ -80,6 +82,13 @@ On this page I made a **specific design decision** to only render the cyptocurre
 From either the watchlist page, or the cryptocurrencies page, the user may click on a specific cryptocurrency to view the cryptocurrency's 24 hour price chart, percentage change, and current price. 
 ![](https://i.imgur.com/7hvo7EP.png)
 
+## Reusable Component
+The reusable component I created for DYOR is the ```<WatchlistButton>```. It's used on both the user watchlist and the cryptocurrencies table. 
+- If a cryptocurrency is already on the user watchlist, it renders as a delete button and when clicked, deletes the cryptocurrency from the user's watchlist.
+- If a cryptocurrency is not on the user watchlist, it renders as an add button and when clicked, adds the cryptocurrency to the user's watchlist.
 
-
-
+## 5 MUI Components
+1. Buttons - LOG-IN, SIGN UP, and DEMO buttons ```<LoginFormModal />```, ```<SignupFormModal />```, and ```<Demo />```  
+2. Data Table - renders all cryptocurrencies ```<CryptocurrencyTable />```
+3. List - renders the user's watchlist ```<Watchlist />```
+5. Tabs - used to navigate between pages ```<Navigation```
