@@ -53,7 +53,6 @@ router.get(
       where: { userId },
       include: {model: db.WatchlistCrypto}
     })
-
      return res.json(watchlists)
   })
 )

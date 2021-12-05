@@ -17,8 +17,8 @@ import { Link } from 'react-router-dom';
 import SearchBar from 'material-ui-search-bar';
 import { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
-// import { addToWatchlist } from 'store/watchlists';
 import WatchlistButton from 'components/WatchlistButton';
+
 
 const styles = (theme: Theme) =>
 ({
@@ -41,6 +41,7 @@ const styles = (theme: Theme) =>
   },
   tableRow: {
     cursor: 'pointer',
+    backgroundColor: '#ffffff'
   },
   tableRowHover: {
     '&:hover': {
@@ -215,10 +216,10 @@ export default function ReactVirtualizedTable() {
   }
 
   return (
-    <section className='container'>
+    <section className='container' id='cryptotable' >
       <Grid container>
         <Grid item sx={{ mx: "auto", width: "200%" }}>
-          <Paper elevation={0} style={{ height: '800%' }}>
+          <Paper elevation={0} >
             <SearchBar
               value={searchValue}
               onChange={(searchQuery) => setSearchValue(searchQuery)}
