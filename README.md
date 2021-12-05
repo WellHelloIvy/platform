@@ -1,5 +1,9 @@
 # DYOR
 
+known problems: 
+- demo button does not function on heroku 
+- crytocurrencies table renders inconsistently - toggling between watchlist tab and crytpocurrencies tab usually fixes
+
 ## Overview
 
 **DYOR** is a web application for users to view specific cryptocurrencies and their details. 
