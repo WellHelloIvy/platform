@@ -187,22 +187,14 @@ interface Data {
 }
 
 export default function ReactVirtualizedTable() {
-  // const watchlistState: any = useSelector((state: State) => state?.watchlists)
-  // const arrayOfWatchlists: any = Object.values(watchlistState)
-  // const watchlistId = arrayOfWatchlists[0].id
-  // const dispatch = useDispatch()
-  const currencies = Object.values(useSelector((state: State) => state.cryptocurrencies));
 
-  // const handleWatchlistClick = (cryptoId: string, watchlistId: number) => {
-  //   dispatch(addToWatchlist(cryptoId, watchlistId))
-  // }
+  const currencies = Object.values(useSelector((state: State) => state.cryptocurrencies));
 
   const sessionUser = useSelector((state:State) => state.session.user)
 
   for (let key in currencies) {
     let currency = currencies[key]
     currency['button'] = <WatchlistButton sessionUser={sessionUser} cryptoId={currency.id}/>
-    //<Button onClick={() => handleWatchlistClick(currency.id, watchlistId)}>Add to Watchlist</Button>
   }
   const arrayOfCurrencies = [...currencies]
 
