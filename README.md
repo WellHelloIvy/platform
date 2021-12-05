@@ -65,8 +65,9 @@ The app follows a Model-View-Controller architectural pattern. This architecture
 - The Model (the redux store) manages the data for the application
 
 ## REST API
-```
+
 router.get(
+  ```
   '/',
   expressAsyncHandler(async(req, res): Promise<any> => {
     const watchlists = await db.Watchlist.findAll({
@@ -74,9 +75,10 @@ router.get(
     })
     return res.json(watchlists)
   })
-)```
+)
+```
 
-- Payload: GET Request do not have headers or payloads
+Payload: GET Request do not have headers or payloads
 
 - Response: an array of watchlist objects 
 
@@ -106,5 +108,4 @@ The reusable component I created for DYOR is the ```<WatchlistButton>```. It's u
 4. Tabs - used to navigate between pages ```<Navigation```
 5. Icons - used in my conditionally rendered add to/delete from watchlist button ```<WatchlistButton />```
 
---------------------------
 
