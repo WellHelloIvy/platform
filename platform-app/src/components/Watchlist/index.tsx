@@ -4,6 +4,7 @@ import { State } from "../../../module"
 import { List, ListItem, Paper } from "@mui/material";
 import { removeFromWatchlist } from "store/watchlists";
 import DeleteIcon from '@mui/icons-material/Delete';
+import WatchlistButton from "components/WatchlistButton";
 
 
 
@@ -32,6 +33,7 @@ function Watchlist({ sessionUser }: any) {
             >
               <Link to={`/cryptocurrencies/${currency.cryptoId}`}>{currency.cryptoId}</Link>
               <DeleteIcon color='primary' onClick={() => handleRemoveClick(currency.cryptoId)}>Remove from Watchlist</DeleteIcon>
+              <WatchlistButton cryptoId={currency.cryptoId} sessionUser={sessionUser}/>
             </ListItem>
           </List>
         })}

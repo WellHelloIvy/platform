@@ -8,17 +8,20 @@ const WatchlistButton = ({cryptoId, sessionUser}:any) => {
   const arrayOfWatchlists = Object.values(watchlistState)
   const userWatchlists = arrayOfWatchlists.filter((watchlist: any) => watchlist.uderId === sessionUser?.Id)
   const defaultWatchlist: any = userWatchlists[0]
-  const currenciesOnWatchlist = defaultWatchlist.WatchlistCryptos
+  const currenciesOnWatchlist = Object.values(defaultWatchlist.WatchlistCryptos)
+  let isInWatchlist = false
 
-  const isInWatchlist = currenciesOnWatchlist.includes(cryptoId)
+  currenciesOnWatchlist.forEach((currency:any) => {
+    if(currency.cryptoId === cryptoId) return isInWatchlist = true
+    return;
+  })
+
 
   return( isInWatchlist?
-    <>yes</>
+    <>it's in the watchlist</>
     :
-    <>no</>
+    <>it's not in the watchlist</>
 
-  )
-
-}
+  )}
 
 export default WatchlistButton

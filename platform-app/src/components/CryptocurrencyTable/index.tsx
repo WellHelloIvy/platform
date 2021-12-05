@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { withStyles, WithStyles } from '@mui/styles';
 import { Theme, createTheme } from '@mui/material/styles';
@@ -16,8 +16,9 @@ import { State } from '../../../module';
 import { Link } from 'react-router-dom';
 import SearchBar from 'material-ui-search-bar';
 import { useState, useEffect } from 'react';
-import { Button, Grid } from '@mui/material';
-import { addToWatchlist } from 'store/watchlists';
+import { Grid } from '@mui/material';
+// import { addToWatchlist } from 'store/watchlists';
+import WatchlistButton from 'components/WatchlistButton';
 
 const styles = (theme: Theme) =>
 ({
@@ -186,19 +187,22 @@ interface Data {
 }
 
 export default function ReactVirtualizedTable() {
-  const watchlistState: any = useSelector((state: State) => state?.watchlists)
-  const arrayOfWatchlists: any = Object.values(watchlistState)
-  const watchlistId = arrayOfWatchlists[0].id
-  const dispatch = useDispatch()
+  // const watchlistState: any = useSelector((state: State) => state?.watchlists)
+  // const arrayOfWatchlists: any = Object.values(watchlistState)
+  // const watchlistId = arrayOfWatchlists[0].id
+  // const dispatch = useDispatch()
   const currencies = Object.values(useSelector((state: State) => state.cryptocurrencies));
 
-  const handleWatchlistClick = (cryptoId: string, watchlistId: number) => {
-    dispatch(addToWatchlist(cryptoId, watchlistId))
-  }
+  // const handleWatchlistClick = (cryptoId: string, watchlistId: number) => {
+  //   dispatch(addToWatchlist(cryptoId, watchlistId))
+  // }
+
+  const sessionUser = useSelector((state:State) => state.session.user)
 
   for (let key in currencies) {
     let currency = currencies[key]
-    currency['button'] = <Button onClick={() => handleWatchlistClick(currency.id, watchlistId)}>Add to Watchlist</Button>
+    currency['button'] = <WatchlistButton sessionUser={sessionUser} cryptoId={currency.id}/>
+    //<Button onClick={() => handleWatchlistClick(currency.id, watchlistId)}>Add to Watchlist</Button>
   }
   const arrayOfCurrencies = [...currencies]
 
