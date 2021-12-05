@@ -21,30 +21,32 @@ function LoginForm() {
   };
 
   return (
+
     <form onSubmit={handleSubmit}>
+     <h1>Log In</h1>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        Email
+      <label htmlFor='email'>Email</label>
         <input
+          id='email'
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Password
+
+      <label htmlFor='password'>Password</label>
         <input
+          id='password'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
+
       <button type="submit">Log In</button>
     </form>
   );

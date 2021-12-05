@@ -5,7 +5,7 @@ import ReactVirtualizedTable from "components/CryptocurrencyTable";
 function TradePage(){
 
   return(
-    <Paper>
+    <Paper elevation={0}>
       <ReactVirtualizedTable />
     </Paper>
   )
