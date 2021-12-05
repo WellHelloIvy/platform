@@ -23,8 +23,7 @@ function Navigation() {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <nav className='container'>
-        <Stack direction='row'>
+        <Stack direction='row' >
           <Box sx={{ width: '100%' }}>
             <Tabs value={value} onChange={handleChange} aria-label="navigation">
               <Tab label="Watchlist" to="/" component={Link} />
@@ -33,27 +32,20 @@ function Navigation() {
           </Box>
           <Logout />
         </Stack>
-      </nav>
-
-
-
-
-
-
     );
   } else {
     sessionLinks = (
-      <>
+      <Stack direction='row' spacing={2} style={{justifyContent:'flex-end'}}>
         <LoginFormModal />
         <SignupFormModal />
-      </>
+      </Stack>
     );
   }
 
   return (
-    <>
+    <nav className='container'>
       {sessionLinks}
-    </>
+    </nav>
   );
 }
 

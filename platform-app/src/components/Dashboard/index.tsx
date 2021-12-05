@@ -1,12 +1,12 @@
+import SplashPage from "components/SplashPage";
 import Watchlist from "components/Watchlist";
 
 function Dashboard({ sessionUser }:any) {
 
-
   return( sessionUser ?
     <Watchlist sessionUser={sessionUser} />
     :
-    <>splash page</>
+    <SplashPage />
   )
 }
 export default Dashboard;
