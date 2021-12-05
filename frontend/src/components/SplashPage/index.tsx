@@ -7,7 +7,6 @@ const SplashPage = () => {
         <h1>Welcome to DYOR</h1>
         <h2>A cryptocurrency learning platform</h2>
       </hgroup>
-      <p>Something something something</p>
     </section>
   )
 }

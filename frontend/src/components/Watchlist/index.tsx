@@ -10,7 +10,7 @@ function Watchlist({ sessionUser }: any) {
   const allWatchlists = Object.values(watchlistState)
   const userWatchlists = allWatchlists.filter((watchlist: any) => watchlist.uderId === sessionUser?.Id)
   const defaultWatchlist: any = userWatchlists[0]
-  const currenciesOnWatchlist = defaultWatchlist.WatchlistCryptos
+  const currenciesOnWatchlist = defaultWatchlist?.WatchlistCryptos
 
   const cryptocurrencies = useSelector((state: State) => state.cryptocurrencies)
 
