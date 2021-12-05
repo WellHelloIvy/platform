@@ -1,5 +1,8 @@
 # DYOR
 
+known issue:
+the cryptocurrencies table has strange styling on first render. toggling between the cryptocurrencies tab and the watchlist tab fixes it. (apologies)
+
 ## Overview
 
 **DYOR** is a web application for users to view specific cryptocurrencies and their details. 
