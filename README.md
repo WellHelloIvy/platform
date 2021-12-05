@@ -70,9 +70,15 @@ The app follows a Model-View-Controller architectural pattern. This architecture
 Upon navigation to the website, the user will be presented with a Splash Page. The user may signup, login (if they already have an account), or use the demo button.
 ![](https://i.imgur.com/IGMM666.png)
 
-The home page serves as the users dashboard. There they can view their Watchlist, a list of cryptocurrencies they'd like to keep an eye on. On this page they remove cryptocurrencies from their watchlist by clicking the ```REMOVE``` button.
+Upon log in/sign up, the user is redirected to the watchlist page. This serves as the user's dashboard. There they can view their Watchlist, a list of cryptocurrencies they'd like to keep an eye on. On this page they remove cryptocurrencies from their watchlist by clicking the ```REMOVE``` button.
 ![](https://i.imgur.com/eGqmnVd.png)
 
+The cryptocurrencies page is where the user can search or scroll through all available cryptocurrencies. While on this page, they can also add or remove cryptocurrencies to / from their watchlist. This is done by clicking the conditionally rendered ```ADD``` or ```REMOVE``` buttons.
+On this page I made a **specific design decision** to only render the cyptocurrency ticker symbols and names. Rendering pricing information on this page would have required making over 300 fetch calls to the Coinbase API. To avoid this, the website doesn't render any pricing information unless a user clicks on a specific cryptocurrency. 
+![](https://i.imgur.com/gUXA8hg.png)
+
+From either the watchlist page, or the cryptocurrencies page, the user may click on a specific cryptocurrency to view the cryptocurrency's 24 hour price chart, percentage change, and current price. 
+![](https://i.imgur.com/7hvo7EP.png)
 
 
 
