@@ -1,15 +1,12 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import { State } from "../../../module"
 import { List, ListItem, Paper } from "@mui/material";
-import { removeFromWatchlist } from "store/watchlists";
-import DeleteIcon from '@mui/icons-material/Delete';
 import WatchlistButton from "components/WatchlistButton";
 
 
 
 function Watchlist({ sessionUser }: any) {
-  const dispatch = useDispatch()
 
   const watchlistState: any = useSelector((state: State) => state.watchlists)
   const arrayOfWatchlists = Object.values(watchlistState)
@@ -17,12 +14,7 @@ function Watchlist({ sessionUser }: any) {
   const defaultWatchlist: any = userWatchlists[0]
   const currenciesOnWatchlist = defaultWatchlist.WatchlistCryptos
 
-  const handleRemoveClick = (cryptoId: any) => {
-    dispatch(removeFromWatchlist(cryptoId, defaultWatchlist.id))
-  }
-
   return (
-
     <Paper className='container'>
       <section>
         <h1>Your Watchlist</h1>
@@ -32,14 +24,13 @@ function Watchlist({ sessionUser }: any) {
             button
             >
               <Link to={`/cryptocurrencies/${currency.cryptoId}`}>{currency.cryptoId}</Link>
-              <DeleteIcon color='primary' onClick={() => handleRemoveClick(currency.cryptoId)}>Remove from Watchlist</DeleteIcon>
+              {/* <DeleteIcon color='primary' onClick={() => handleRemoveClick(currency.cryptoId)}>Remove from Watchlist</DeleteIcon> */}
               <WatchlistButton cryptoId={currency.cryptoId} sessionUser={sessionUser}/>
             </ListItem>
           </List>
         })}
       </section>
     </Paper>
-
   )
 }
 export default Watchlist

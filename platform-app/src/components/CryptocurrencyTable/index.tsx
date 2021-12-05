@@ -187,13 +187,8 @@ interface Data {
 }
 
 export default function ReactVirtualizedTable() {
-  // const watchlistState: any = useSelector((state: State) => state?.watchlists)
-  // const arrayOfWatchlists: any = Object.values(watchlistState)
-  // const watchlistId = arrayOfWatchlists[0].id
-  // const dispatch = useDispatch()
+
   const currencies = Object.values(useSelector((state: State) => state.cryptocurrencies));
-
-
 
   const sessionUser = useSelector((state:State) => state.session.user)
 

@@ -1,7 +1,8 @@
 import { Button } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
-import { addToWatchlist } from "store/watchlists"
+import { addToWatchlist, removeFromWatchlist } from "store/watchlists"
 import { State } from "../../../module"
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const WatchlistButton = ({cryptoId, sessionUser}:any) => {
@@ -22,10 +23,16 @@ const WatchlistButton = ({cryptoId, sessionUser}:any) => {
     dispatch(addToWatchlist(cryptoId, watchlistId))
   }
 
+  const handleRemoveWatchlistClick = (cryptoId: any) => {
+    dispatch(removeFromWatchlist(cryptoId, defaultWatchlist.id))
+  }
+
   return( isInWatchlist?
-    <>it's in the watchlist</>
+    <>
+    <DeleteIcon color='primary' onClick={() => handleRemoveWatchlistClick(cryptoId)}>Remove from Watchlist</DeleteIcon>
+    </>
     :
-    <>it's not in the watchlist
+    <>
     <Button onClick={() => handleAddWatchlistClick(cryptoId, defaultWatchlist.id)}>Add to Watchlist</Button>
     </>
 
