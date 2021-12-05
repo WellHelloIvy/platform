@@ -92,3 +92,6 @@ The reusable component I created for DYOR is the ```<WatchlistButton>```. It's u
 2. Data Table - renders all cryptocurrencies ```<CryptocurrencyTable />```
 3. List - renders the user's watchlist ```<Watchlist />```
 5. Tabs - used to navigate between pages ```<Navigation```
+
+
+
