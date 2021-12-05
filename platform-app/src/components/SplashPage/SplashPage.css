@@ -1,0 +1,14 @@
+#splash-container {
+  height: 90vh;
+  background-color: #122ab3;
+
+  color: white;
+  text-align: center;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
