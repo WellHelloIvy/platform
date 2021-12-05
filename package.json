@@ -1,5 +1,5 @@
 {
-  "name": "DYOR",
+  "name": "app",
   "version": "1.0.0",
   "description": "A cryptocurrency platform",
   "main": "index.js",
@@ -10,8 +10,7 @@
     "dev:frontend": "npm install --prefix frontend start",
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
-    "start": "npm start --prefix backend",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm start --prefix backend"
   },
   "repository": {
     "type": "git",
