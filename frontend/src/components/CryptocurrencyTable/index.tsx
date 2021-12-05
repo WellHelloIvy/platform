@@ -50,6 +50,7 @@ const styles = (theme: Theme) =>
   },
   tableCell: {
     flex: 1,
+    backgroundColor: '#ffffff'
   },
   noClick: {
     cursor: 'initial',
@@ -218,8 +219,8 @@ export default function ReactVirtualizedTable() {
   return (
     <section className='container' id='cryptotable' >
       <Grid container>
-        <Grid item sx={{ mx: "auto", width: "200%" }}>
-          <Paper elevation={0} >
+        <Grid item sx={{ mx: "auto", width: "200%", height:'400%' }}>
+          <Paper elevation={0} style={{height: '400%'}}>
             <SearchBar
               value={searchValue}
               onChange={(searchQuery) => setSearchValue(searchQuery)}
