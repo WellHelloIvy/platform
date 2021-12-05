@@ -60,11 +60,13 @@ I set up the redux store to maintain a separation of concerns and also avoid red
 
 ## Architectural Pattern
 The app follows a Model-View-Controller architectural pattern. This architecture naturally lends itself to React/Redux Apps.  
-- The redux store acts as the Model which manages the data for the application
-- The controller (in the form of reducers and thunks) manipulates the Model
-- The React components serve as the View - the User Interface portion of the application
+- The React components serve as the View - the User interacts with the View which triggers the Controller.
+- The Controller (in the form of reducers and thunks) is responsible for manipulating the Model
+- The Model (the redux store) manages the data for the application
 
 ## REST API
+
+
 
 ## Views, User flow, and Distinct Design Decision
 Upon navigation to the website, the user will be presented with a Splash Page. The user may signup, login (if they already have an account), or use the demo button.
