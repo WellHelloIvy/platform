@@ -14,7 +14,6 @@ export const getCryptocurrencies = () => async(dispatch: Dispatch<any>):Promise<
   const response = await fetch('https://api.exchange.coinbase.com/currencies', options)
     if(response.ok) {
       const data = await response.json();
-      console.log(data)
       dispatch(loadCryptocurrencies(data));
       return null;
     }
