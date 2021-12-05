@@ -197,10 +197,10 @@ export default function ReactVirtualizedTable() {
     let currency = currencies[key]
     currency['button'] = <WatchlistButton sessionUser={sessionUser} cryptoId={currency.id}/>
   }
-  const arrayOfCurrencies = [...currencies]
+  const arrayOfCurrencies = currencies.slice()
 
   const [rows, setRows] = useState(arrayOfCurrencies);
-  const copyOfRows = [...currencies]
+  const copyOfRows = currencies.slice()
 
   const [searchValue, setSearchValue] = useState('');
 
