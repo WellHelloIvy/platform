@@ -193,16 +193,13 @@ export default function ReactVirtualizedTable() {
   // const dispatch = useDispatch()
   const currencies = Object.values(useSelector((state: State) => state.cryptocurrencies));
 
-  // const handleWatchlistClick = (cryptoId: string, watchlistId: number) => {
-  //   dispatch(addToWatchlist(cryptoId, watchlistId))
-  // }
+
 
   const sessionUser = useSelector((state:State) => state.session.user)
 
   for (let key in currencies) {
     let currency = currencies[key]
     currency['button'] = <WatchlistButton sessionUser={sessionUser} cryptoId={currency.id}/>
-    //<Button onClick={() => handleWatchlistClick(currency.id, watchlistId)}>Add to Watchlist</Button>
   }
   const arrayOfCurrencies = [...currencies]
 
