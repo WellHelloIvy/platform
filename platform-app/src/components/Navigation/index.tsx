@@ -7,7 +7,7 @@ import SignupFormModal from 'components/SignupFormModal';
 import * as React from 'react';
 import { Box, Tabs, Tab } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
-import { Grid } from '@mui/material';
+import { Stack } from '@mui/material';
 
 function Navigation() {
   const sessionUser = useSelector((state: State) => state.session.user);
@@ -23,20 +23,22 @@ function Navigation() {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <Grid container>
-        <Grid item >
-          <Box sx={{ width: '2000%' }}>
+      <nav className='container'>
+        <Stack direction='row'>
+          <Box sx={{ width: '100%' }}>
             <Tabs value={value} onChange={handleChange} aria-label="navigation">
               <Tab label="Watchlist" to="/" component={Link} />
               <Tab label="Cryptocurrencies" to="/cryptocurrencies" component={Link} />
             </Tabs>
           </Box>
-        </Grid>
-        <Grid item>
-           <Logout />
-        </Grid>
+          <Logout />
+        </Stack>
+      </nav>
 
-      </Grid>
+
+
+
+
 
     );
   } else {

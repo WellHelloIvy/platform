@@ -24,7 +24,6 @@ function Watchlist({ sessionUser }: any) {
             button
             >
               <Link to={`/cryptocurrencies/${currency.cryptoId}`}>{currency.cryptoId}</Link>
-              {/* <DeleteIcon color='primary' onClick={() => handleRemoveClick(currency.cryptoId)}>Remove from Watchlist</DeleteIcon> */}
               <WatchlistButton cryptoId={currency.cryptoId} sessionUser={sessionUser}/>
             </ListItem>
           </List>
