@@ -65,8 +65,20 @@ The app follows a Model-View-Controller architectural pattern. This architecture
 - The Model (the redux store) manages the data for the application
 
 ## REST API
+```
+router.get(
+  '/',
+  expressAsyncHandler(async(req, res): Promise<any> => {
+    const watchlists = await db.Watchlist.findAll({
+      include: {model: db.WatchlistCrypto}
+    })
+    return res.json(watchlists)
+  })
+)```
 
+- Payload: GET Request do not have headers or payloads
 
+- Response: an array of watchlist objects 
 
 ## Views, User flow, and Distinct Design Decision
 Upon navigation to the website, the user will be presented with a Splash Page. The user may signup, login (if they already have an account), or use the demo button.
@@ -91,7 +103,8 @@ The reusable component I created for DYOR is the ```<WatchlistButton>```. It's u
 1. Buttons - LOG-IN, SIGN UP, and DEMO buttons ```<LoginFormModal />```, ```<SignupFormModal />```, and ```<Demo />```  
 2. Data Table - renders all cryptocurrencies ```<CryptocurrencyTable />```
 3. List - renders the user's watchlist ```<Watchlist />```
-5. Tabs - used to navigate between pages ```<Navigation```
+4. Tabs - used to navigate between pages ```<Navigation```
+5. Icons - used in my conditionally rendered add to/delete from watchlist button ```<WatchlistButton />```
 
-
+--------------------------
 
