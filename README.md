@@ -1,8 +1,7 @@
 # DYOR
 
-known problems: 
-- demo button does not function on heroku 
-- crytocurrencies table renders inconsistently - toggling between watchlist tab and crytpocurrencies tab usually fixes
+known issue:
+the cryptocurrencies table has strange styling on first render. toggling between the cryptocurrencies tab and the watchlist tab fixes it. (apologies)
 
 ## Overview
 
