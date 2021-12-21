@@ -46,7 +46,11 @@ const styles = (theme: Theme) =>
   tableRowHover: {
     '&:hover': {
       backgroundColor: '#ffd600',
+      "&:hover > span:hover": {
+        backgroundColor: "lightblue"
+      }
     },
+
   },
   tableCell: {
     flex: 1,

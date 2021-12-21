@@ -9,9 +9,10 @@ import CryptoDetailsPage from "components/CryptoDetailsPage";
 import Dashboard from "components/Dashboard";
 import { State } from "../module";
 import { getAllWatchlists } from "store/watchlists";
-import { ThemeProvider } from '@mui/material/styles';
-import theme from './components/theme'
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
+
+const theme = createTheme();
 
 function App() {
   const dispatch: any = useDispatch();
