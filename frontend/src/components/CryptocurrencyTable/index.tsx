@@ -14,10 +14,10 @@ import {
 } from 'react-virtualized';
 import { State } from '../../../module';
 import { Link } from 'react-router-dom';
-import SearchBar from 'material-ui-search-bar';
 import { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import WatchlistButton from 'components/WatchlistButton';
+import { TextField } from '@material-ui/core';
 
 
 const styles = (theme: Theme) =>
@@ -197,11 +197,11 @@ export default function ReactVirtualizedTable() {
 
   const currencies = Object.values(useSelector((state: State) => state.cryptocurrencies));
 
-  const sessionUser = useSelector((state:State) => state.session.user)
+  const sessionUser = useSelector((state: State) => state.session.user)
 
   for (let key in currencies) {
     let currency = currencies[key]
-    currency['button'] = <WatchlistButton sessionUser={sessionUser} cryptoId={currency.id}/>
+    currency['button'] = <WatchlistButton sessionUser={sessionUser} cryptoId={currency.id} />
   }
   const arrayOfCurrencies = currencies.slice()
 
@@ -216,19 +216,23 @@ export default function ReactVirtualizedTable() {
     setRows(searchResults)
   }, [searchValue])
 
-  const handleCancel = () => {
-    setRows(arrayOfCurrencies)
-  }
+  // const handleCancel = () => {
+  //   setRows(arrayOfCurrencies)
+  // }
 
   return (
     <section className='container' id='cryptotable' >
       <Grid container>
         <Grid item sx={{ mx: "auto", width: "200%" }}>
-          <Paper elevation={0} style={{height: '800%'}}>
-            <SearchBar
+          <Paper elevation={0} style={{ height: '800%' }}>
+            <TextField
+              id="filled-search"
+              label="Search field"
+              type="search"
+              variant="filled"
               value={searchValue}
-              onChange={(searchQuery) => setSearchValue(searchQuery)}
-              onCancelSearch={() => handleCancel()}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value)}
+              //create a cancel search
             />
             <VirtualizedTable
               rowCount={rows.length}
