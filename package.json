@@ -27,5 +27,6 @@
     "node": "12.22.1"
   },
   "dependencies": {
+    "react-virtualized": "^9.22.3"
   }
 }
