@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
-import { withStyles, WithStyles } from '@mui/styles';
-import { Theme, createTheme } from '@mui/material/styles';
+import { WithStyles } from '@mui/styles';
+import withStyles from '@mui/styles/withStyles';
+import { Theme} from '@mui/material/styles';
 import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import {
@@ -185,8 +186,8 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   }
 }
 
-const defaultTheme = createTheme();
-const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTable);
+// const defaultTheme = createTheme();
+const VirtualizedTable = withStyles()(MuiVirtualizedTable);
 
 interface Data {
   id: string;
