@@ -9,7 +9,7 @@ import CryptoDetailsPage from "components/CryptoDetailsPage";
 import Dashboard from "components/Dashboard";
 import { State } from "../module";
 import { getAllWatchlists } from "store/watchlists";
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider} from '@mui/material/styles';
 
 
 const theme = createTheme();
@@ -31,7 +31,6 @@ function App() {
   if (!isLoaded) return null;
 
   return (
-    <>
       <ThemeProvider theme={theme}>
           <Navigation />
           <Routes>
@@ -40,7 +39,6 @@ function App() {
             <Route path='/cryptocurrencies/:cryptoId' element={<CryptoDetailsPage />} />
           </Routes>
       </ThemeProvider>
-    </>
   );
 }
 

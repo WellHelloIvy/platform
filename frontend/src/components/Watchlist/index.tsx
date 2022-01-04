@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux"
-// import { Link } from "react-router-dom";
 import { State } from "../../../module"
 import { Divider, List, ListItem, ListItemButton, ListItemText, Paper } from "@mui/material";
 import WatchlistButton from "components/WatchlistButton";
+import * as React from "react";
 
 function Watchlist({ sessionUser }: any) {
 
@@ -14,16 +14,19 @@ function Watchlist({ sessionUser }: any) {
 
   const cryptocurrencies = useSelector((state: State) => state.cryptocurrencies)
 
+  const listRef = React.useRef<HTMLUListElement>(null);
+  const listItemRef = React.useRef<HTMLLIElement>(null);
+
   return (
     <Paper className='container'>
       <section>
         <h1>Your Watchlist</h1>
-        <List aria-label="crypto currenciers on watchlist">
+        <List aria-label="crypto currenciers on watchlist" ref={listRef}>
         {currenciesOnWatchlist?.map((currency: any) => {
           return(
             <>
             <ListItem
-            button
+            ref={listItemRef}
             sx={{display: 'flex', justifyContent: 'space-between' }}
             >
               <ListItemButton component='a' href={`/cryptocurrencies/${currency.cryptoId}`}>
