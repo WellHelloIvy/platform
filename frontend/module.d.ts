@@ -1,3 +1,5 @@
+declare module 'js-cookie';
+
 export interface CurrentUser {
   id: number;
   firstName: string;
@@ -20,7 +22,7 @@ export interface LoginUser {
 
 export interface Action {
   type: string;
-  payload?:any;
+  payload?: any;
 }
 
 interface Session {
@@ -30,11 +32,11 @@ interface Session {
 export interface State {
   session: Session;
   cryptocurrencies: object
-  watchlists?:Watchlist
+  watchlists?: Watchlist
 }
 
 export interface ModalProviderProp {
-  children?:any;
+  children?: any;
 }
 
 export interface ModalProps {
@@ -50,18 +52,18 @@ export interface Asset {
 }
 
 export interface Transaction {
-  id:number;
-  userId:number;
-  cryptoId:string;
-  price:number;
-  quantity:number;
-  buy:number;
+  id: number;
+  userId: number;
+  cryptoId: string;
+  price: number;
+  quantity: number;
+  buy: number;
 }
 
 export interface Watchlist {
-  id:number;
-  userId:number;
-  name:string;
+  id: number;
+  userId: number;
+  name: string;
   WatchlistCryptos: Array<string>
 }
 
@@ -72,7 +74,7 @@ export interface Action {
 
 interface Cryptodetails {
   ticker: any;
-  candlesticks:any;
+  candlesticks: any;
 }
 
 export interface Ticker {
