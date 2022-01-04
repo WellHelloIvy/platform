@@ -3,11 +3,10 @@ import Logout from 'components/Logout';
 import { State } from '../../../module';
 import LoginFormModal from 'components/LoginFormModal';
 import SignupFormModal from 'components/SignupFormModal';
-import { Box, Tabs, Tab } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { Stack } from '@mui/material';
+import { Stack, Box, Tabs, Tab } from '@mui/material';
 import DemoButton from 'components/Demo';
-import React from 'react';
+import * as React from 'react';
 
 function Navigation() {
   const sessionUser = useSelector((state: State) => state.session.user);
@@ -18,14 +17,17 @@ function Navigation() {
     setValue(newValue);
   };
 
+  const tabsRef = React.useRef<HTMLButtonElement>(null);
+  const tabRef = React.useRef<HTMLAnchorElement>(null);
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <Stack direction='row' >
         <Box sx={{ width: '100%' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="navigation">
-            <Tab value={0} label="Watchlist" to="/" component={Link} />
-            <Tab value={1} label="Cryptocurrencies" to="/cryptocurrencies" component={Link} />
+          <Tabs ref={tabsRef} value={value} onChange={handleChange} aria-label="navigation">
+            <Tab ref={tabRef} value={0} label="Watchlist" to="/" component={Link} />
+            <Tab ref={tabRef} value={1} label="Cryptocurrencies" to="/cryptocurrencies" component={Link} />
           </Tabs>
         </Box>
         <Logout />
