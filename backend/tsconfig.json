@@ -12,6 +12,7 @@
     "forceConsistentCasingInFileNames": true
   },
   "exclude": [
-    "node_nodules"
+    "node_nodules",
+    "./build/**/*"
   ]
 }
