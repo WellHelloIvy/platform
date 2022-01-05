@@ -6,12 +6,12 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "es6",
+    "allowJs": true,
     "rootDir": "./",
     "outDir": "./build",
     "forceConsistentCasingInFileNames": true
   },
   "exclude": [
     "node_nodules",
-    "./build/**/*"
   ]
 }
