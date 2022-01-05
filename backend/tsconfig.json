@@ -12,7 +12,6 @@
     "forceConsistentCasingInFileNames": true
   },
   "exclude": [
-    "build",
     "node_nodules"
   ]
 }
