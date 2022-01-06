@@ -1,6 +1,6 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler';
-import { Op } from 'sequelize';
+import { Op } from 'sequelize/dist';
 import db from '../../db/models'
 
 const router:any = express.Router();

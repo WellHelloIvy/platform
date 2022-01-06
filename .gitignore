@@ -106,4 +106,4 @@ dist
 # state planning
 state-planning.json
 
-backend/build
+package-lock.json
