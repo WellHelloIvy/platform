@@ -7,7 +7,7 @@
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
     "tsc": "tsc",
-    "postinstall": "npm run build",
+    "postinstall": "npm run tsc",
     "start": "per-env",
     "start:development": "nodemon -r dotenv/config ./bin/www.ts",
     "start:production": "node ./build/bin/www"
