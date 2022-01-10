@@ -1,17 +1,19 @@
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
+import WatchlistButton from 'components/WatchlistButton';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { State } from '../../../module';
 
 
 
-export default function DataTable() {
+export default function DataTable({ sessionUser }:any) {
   const navigate = useNavigate()
-  const cryptocurrencies =Object.values(useSelector((state:State) => state.cryptocurrencies))
+  const cryptocurrencies = Object.values(useSelector((state:State) => state.cryptocurrencies))
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'Name', width: 130 },
+    { field: 'watchlist', headerName: 'Add to / Remove from Watchlist', width: 130, renderCell: (params:GridCellParams) =>  (<WatchlistButton cryptoId={params.row.id} sessionUser={sessionUser}/>)},
   ];
 
   const rows = cryptocurrencies.slice();

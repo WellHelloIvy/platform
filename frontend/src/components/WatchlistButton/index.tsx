@@ -21,24 +21,26 @@ const WatchlistButton = ({cryptoId, sessionUser}:any) => {
     return;
   })
 
-    const handleAddWatchlistClick = (cryptoId: string, watchlistId: number) => {
+    const handleAddWatchlistClick = (e:any, cryptoId: string, watchlistId: number) => {
+      e.stopPropagation()
     dispatch(addToWatchlist(cryptoId, watchlistId))
   }
 
-  const handleRemoveWatchlistClick = (cryptoId: any) => {
+  const handleRemoveWatchlistClick = (e:any, cryptoId: any) => {
+    e.stopPropagation()
     dispatch(removeFromWatchlist(cryptoId, defaultWatchlist.id))
   }
 
   return( isInWatchlist?
     <>
-    <Button color='primary' variant='outlined' onClick={() => handleRemoveWatchlistClick(cryptoId)} aria-label="delete from watchlist" startIcon={<DeleteIcon />}>
+    <Button color='primary' variant='outlined' onClick={(e) => handleRemoveWatchlistClick(e, cryptoId)} aria-label="delete from watchlist" startIcon={<DeleteIcon />}>
       Remove
     </Button>
 
     </>
     :
     <>
-    <Button onClick={() => handleAddWatchlistClick(cryptoId, defaultWatchlist.id)} aria-label="add to watchlist" variant='outlined' startIcon={<AddIcon />}>Add</Button>
+    <Button onClick={(e) => handleAddWatchlistClick(e, cryptoId, defaultWatchlist.id)} aria-label="add to watchlist" variant='outlined' startIcon={<AddIcon />}>Add</Button>
     </>
 
   )}
