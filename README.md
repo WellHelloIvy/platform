@@ -8,7 +8,7 @@ the cryptocurrencies table has strange styling on first render. toggling between
 **DYOR** is a web application for users to view specific cryptocurrencies and their details. 
 Users may search for cryptocurrencies by name and ticker symbol, add cryptocurrencies to their watchlist, and view the price, percentage change and 24 hour price chart for each currency.
 
-## [Click here to visit the DYOR live site!](https://dyor-investments.herokuapp.com/)
+## [Click here to visit the DYOR live site!](https://dyor-investments.herokuapp.com)
 
 ## Table of Contents
 
